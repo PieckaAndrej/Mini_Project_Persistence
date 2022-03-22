@@ -14,6 +14,8 @@ public abstract class Database {
 		
 		try {
 			SQLServerDataSource ds = new SQLServerDataSource();
+			ds.setEncrypt(false);
+			ds.setPortNumber(1433);
 			ds.setUser("sa");
 			ds.setPassword("secret2022*");
 			ds.setServerName("localhost\\sqlexpress");
