@@ -1,19 +1,24 @@
-/*USE DatabaseName*/
+USE CSC-CSD-S211_10407533
 
-CREATE TABLE dbo.Customer (
-	[name] VARCHAR(25) NOT NULL,
-	[address] VARCHAR(50) NOT NULL,
+CREATE TABLE dbo.Country (
+	country VARCHAR(20) NOT NULL,
 	zipcode VARCHAR(5) NOT NULL,
 	city VARCHAR(25) NOT NULL,
-	phoneno VARCHAR(10) PRIMARY KEY NOT NULL,
+	PRIMARY KEY (country, zipcode),
 	)  
 
 GO
-
-CREATE TABLE dbo.Invoice (
-	invoiceNo int PRIMARY KEY IDENTITY(1,1),
-	paymentDate datetime NOT NULL,
-	amount int NOT NULL,
+	
+CREATE TABLE dbo.Person (
+	[name] VARCHAR(25) NOT NULL,
+	[address] VARCHAR(50) NOT NULL,
+	country VARCHAR(20) NOT NULL,
+	zipcode VARCHAR(5) NOT NULL,
+	phoneno VARCHAR(10) PRIMARY KEY NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	CONSTRAINT CustomerLocationFK
+		FOREIGN KEY (country, zipcode) REFERENCES Country(country, zipcode)
+		ON DELETE SET NULL,
 	)  
 
 GO
@@ -23,41 +28,13 @@ CREATE TABLE dbo.SaleOrder (
    [date] datetime NOT NULL,  
    deliveryStatus bit,
    deliveryDate datetime NOT NULL,
-   city VARCHAR(25) NOT NULL,
+   paymentDate datetime NOT NULL,
+   amount int NOT NULL,
    customerPhoneno VARCHAR(10) NOT NULL,
-   invoiceNumber int,
    CONSTRAINT CustomerOrderFK
-		FOREIGN KEY (customerPhoneno) REFERENCES Customer(phoneno)
-		ON DELETE SET NULL,
-   CONSTRAINT InvoiceNumberFK
-		FOREIGN KEY (invoiceNumber) REFERENCES Invoice(invoiceNo)
+		FOREIGN KEY (customerPhoneno) REFERENCES Person(phoneno)
 		ON DELETE SET NULL,
 		)  
-
-GO
-
-CREATE TABLE dbo.SaleOrderLine (
-	amount int NOT NULL,
-	productId int IDENTITY(1,1), 
-	saleId int IDENTITY(1,1),
-	PRIMARY KEY (productId, saleId),
-	CONSTRAINT SaleOrderFK
-		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
-		ON DELETE CASCADE,
-	CONSTRAINT SaleProductFK
-		FOREIGN KEY (productId) REFERENCES Product(id)
-		ON DELETE SET NULL,
-	)  
-
-GO
-
-CREATE TABLE dbo.Supplier (
-	[name] VARCHAR(25) NOT NULL,
-	[address] VARCHAR(50) NOT NULL,
-	country VARCHAR(20) NOT NULL,
-	phoneno VARCHAR(10) PRIMARY KEY NOT NULL,
-	email VARCHAR(50) NOT NULL,
-	)
 
 GO
 
@@ -69,9 +46,37 @@ CREATE TABLE dbo.Product (
 	rentPrice int NOT NULL,
 	countryOfOrigin VARCHAR(20) NOT NULL,
 	minStock int NOT NULL,
+	currentStock int NOT NULL,
 	supplierPhoneno VARCHAR(10) NOT NULL,
 	CONSTRAINT SupplierProductFK
-		FOREIGN KEY (supplierPhoneno) REFERENCES Supplier(phoneno)
+		FOREIGN KEY (supplierPhoneno) REFERENCES Person(phoneno)
+		ON DELETE SET NULL,
+	)  
+
+GO
+
+CREATE TABLE dbo.[Copy] (
+	copyId int PRIMARY KEY IDENTITY(1,1), 
+	isRentable bit,
+	rentDate datetime NOT NULL,
+	productId int IDENTITY(1,1),
+	CONSTRAINT ProductCopyFK
+		FOREIGN KEY (productId) REFERENCES Product(id)
+		ON DELETE CASCADE,
+	)  
+
+GO
+
+CREATE TABLE dbo.SaleOrderLine (
+	amount int NOT NULL,
+	copyId int IDENTITY(1,1), 
+	saleId int IDENTITY(1,1),
+	PRIMARY KEY (copyId, saleId),
+	CONSTRAINT SaleOrderLineFK
+		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
+		ON DELETE CASCADE,
+	CONSTRAINT CopyOrderLineFK
+		FOREIGN KEY (copyId) REFERENCES [Copy](copyId)
 		ON DELETE SET NULL,
 	)  
 
