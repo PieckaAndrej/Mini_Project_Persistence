@@ -18,8 +18,8 @@ public abstract class Database {
 			ds.setPortNumber(1433);
 			ds.setUser("sa");
 			ds.setPassword("secret2022*");
-			ds.setServerName("localhost\\sqlexpress");
-			ds.setDatabaseName("TheCoffeeBreak");
+			ds.setServerName("\\SQLEXPRESS");
+			ds.setDatabaseName("bank");
 			conn = ds.getConnection();
 
 			conn.setTransactionIsolation(isolationLevel);
