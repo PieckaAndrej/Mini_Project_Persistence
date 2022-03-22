@@ -38,10 +38,14 @@ GO
 
 CREATE TABLE dbo.SaleOrderLine (
 	amount int NOT NULL,
-	saleId int,
-	productId int PRIMARY KEY IDENTITY(1,1), 
+	productId int IDENTITY(1,1), 
+	saleId int IDENTITY(1,1),
+	PRIMARY KEY (productId, saleId),
 	CONSTRAINT SaleOrderFK
 		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
+		ON DELETE CASCADE,
+	CONSTRAINT SaleProductFK
+		FOREIGN KEY (productId) REFERENCES Product(id)
 		ON DELETE SET NULL,
 	)  
 
@@ -96,7 +100,7 @@ CREATE TABLE dbo.Equipment (
 GO
 
 CREATE TABLE dbo.GunReplica (
-	calibre decimal(5,2),
+	calibre decimal(5,2) NOT NULL,
 	material VARCHAR(20) NOT NULL,
 	productId int,
 	CONSTRAINT GunReplicaProductFK
