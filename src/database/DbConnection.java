@@ -16,10 +16,10 @@ public class DbConnection {
 			SQLServerDataSource ds = new SQLServerDataSource();
 			ds.setEncrypt(false);
 			ds.setPortNumber(1433);
-			ds.setUser("sa");
-			ds.setPassword("secret2022*");
-			ds.setServerName("\\SQLEXPRESS");
-			ds.setDatabaseName("bank");
+			ds.setUser("CSC-CSD-S211_10407533");
+			ds.setPassword("Password1!");
+			ds.setServerName("hildur.ucn.dk");
+			ds.setDatabaseName("CSC-CSD-S211_10407533");
 			conn = ds.getConnection();
 
 			
@@ -29,7 +29,7 @@ public class DbConnection {
 		}	
 	}
 	
-	public DbConnection getInstance() {
+	public static DbConnection getInstance() {
 		return instance;		
 	}
 	
@@ -43,7 +43,7 @@ public class DbConnection {
 		return conn;
 	}
 	
-	public static void printSessionInfo(Connection conn) {
+	public void printSessionInfo(Connection conn) {
 		
 		PreparedStatement selectSessionInfo = null;
 		
