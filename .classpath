@@ -7,8 +7,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="JDBC"/>
-	<classpathentry excluding="src/|JDBC/" kind="src" path=""/>
+	<classpathentry kind="src" path="lib"/>
+	<classpathentry excluding="src/|lib/" kind="src" path=""/>
 	<classpathentry kind="lib" path="JDBC/mssql-jdbc-10.2.0.jre17.jar"/>
+	<classpathentry kind="lib" path="lib/mssql-jdbc-10.2.0.jre17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
