@@ -33,11 +33,14 @@ public class DbConnection {
 		return instance;		
 	}
 	
+	public Connection getConnection() {
+		return conn;
+	}
+	
 	public Connection getConnection(int isolationLevel) {
 		try {
 			conn.setTransactionIsolation(isolationLevel);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conn;
