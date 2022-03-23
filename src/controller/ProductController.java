@@ -5,13 +5,13 @@ import model.Product;
 
 
 public class ProductController {
-	private ProductDBIF productDatabase;
+	private ProductDBIF productDb;
 
 	public ProductController() {
-		productDatabase = new ProductDB();
+		productDb = new ProductDB();
 	}
 	
 	public Product getProductById(String id) {
-		return productDatabase.getProductByID(id);
+		return productDb.getProductByID(id);
 	}
 }
