@@ -50,7 +50,9 @@ public class PersonDB implements PersonDBIF {
 	}
 	
 	private Person buildObject(ResultSet rs) throws SQLException {
-		return new Person(rs.getString("name"), rs.getString("address"), rs.getString("country"), rs.getString("zipcode"), rs.getString("phoneno"), rs.getString("email"));
+		return new Person(rs.getString("name"), rs.getString("address"),
+				rs.getString("country"), rs.getString("zipcode"),
+				rs.getString("phoneno"), rs.getString("email"));
 	}
 
 }
