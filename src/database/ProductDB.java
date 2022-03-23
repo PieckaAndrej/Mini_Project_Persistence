@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import dal.DbConnection;
 import model.Product;
 
 public class ProductDB implements ProductDBIF {
