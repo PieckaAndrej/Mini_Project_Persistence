@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaleOrder {
+	private int id;
 	private LocalDateTime date;
 	private LocalDateTime deliveryDate;
 	private LocalDateTime paymentDate;
@@ -83,6 +84,10 @@ public class SaleOrder {
 
 	public void setCustomer(Person customer) {
 		this.customer = customer;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

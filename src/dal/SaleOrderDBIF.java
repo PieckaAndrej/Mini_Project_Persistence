@@ -3,5 +3,5 @@ package dal;
 import model.SaleOrder;
 
 public interface SaleOrderDBIF {
-	public boolean createOrder(SaleOrder order);
+	public SaleOrder insertOrder(SaleOrder order);
 }
