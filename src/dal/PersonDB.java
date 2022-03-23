@@ -31,7 +31,7 @@ public class PersonDB implements PersonDBIF {
 
 
 	@Override
-	public Person getCustomerByPhone(String phone) {
+	public Person getPersonByPhone(String phone) {
 		
 		Person person = null;
 

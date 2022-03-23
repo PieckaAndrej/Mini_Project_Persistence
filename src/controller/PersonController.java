@@ -12,8 +12,8 @@ public class PersonController {
 		personDb = new PersonDB();
 	}
 	
-	public Person getCustomerByPhone(String phone)
+	public Person getPersonByPhone(String phone)
 	{
-		return personDb.getCustomerByPhone(phone);
+		return personDb.getPersonByPhone(phone);
 	}
 }
