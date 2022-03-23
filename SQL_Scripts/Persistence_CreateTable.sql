@@ -113,6 +113,7 @@ CREATE TABLE dbo.SaleOrderLine (
 	quantity int NOT NULL,
 	productId int, 
 	saleId int,
+	PRIMARY KEY(productId, saleId),
 	CONSTRAINT SaleOrderLineFK
 		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
 		ON DELETE CASCADE,
