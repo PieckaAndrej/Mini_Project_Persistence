@@ -5,10 +5,11 @@ public class Person {
 	private String address;
 	private String city;
 	private String phone;
-	private int zipcode;
+	private String zipcode;
+	private String email;
 	
 	
-	public Person(String name, String address, String city, String phone, int zipcode) {
+	public Person(String name, String address, String city, String phone, String zipcode, String email) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -58,13 +59,29 @@ public class Person {
 	}
 
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
+	}
+
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
