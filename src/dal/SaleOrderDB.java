@@ -22,7 +22,7 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	}
 
 	@Override
-	public boolean createOrder(SaleOrder order) {
+	public boolean insertOrder(SaleOrder order) {
 		boolean retVal = false;
 		try {
 			createStatement.setTimestamp(1, Timestamp.valueOf(order.getDate()));
@@ -31,6 +31,8 @@ public class SaleOrderDB implements SaleOrderDBIF {
 			createStatement.setTimestamp(4, Timestamp.valueOf(order.getPaymentDate()));
 			createStatement.setDouble(5, order.getAmount());
 			createStatement.setString(6, order.getCustomer().getPhone());
+			
+			createStatement.executeUpdate();
 			
 			retVal = true;
 		} catch (SQLException e) {
