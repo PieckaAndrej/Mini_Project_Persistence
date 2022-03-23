@@ -6,14 +6,14 @@ import java.sql.Timestamp;
 
 import model.SaleOrder;
 
-public class OrderDB implements OrderDBIF {
+public class SaleOrderDB implements SaleOrderDBIF {
 	
 	private static final String CREATE_STATEMENT = "INSERT INTO SaleOrder(date, deliveryStatus, deliveryDate,"
 			+ " paymentDate, amount, customerPhoneno) VALUES(?, ?, ?, ?, ?, ?)";
 	
 	private PreparedStatement createStatement;
 	
-	public OrderDB() {
+	public SaleOrderDB() {
 		try {
 			createStatement = DbConnection.getInstance().getConnection().prepareStatement(CREATE_STATEMENT);
 		} catch (SQLException e) {

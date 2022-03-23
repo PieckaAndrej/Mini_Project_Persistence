@@ -2,6 +2,6 @@ package dal;
 
 import model.SaleOrder;
 
-public interface OrderDBIF {
+public interface SaleOrderDBIF {
 	public boolean createOrder(SaleOrder order);
 }
