@@ -8,7 +8,7 @@ import java.sql.Connection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import database.DbConnection;
+import dal.DbConnection;
 
 public class DatabaseConnectionTest {
 
