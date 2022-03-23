@@ -14,12 +14,9 @@ public class SaleOrderController {
 	private SaleOrder currentOrder;
 	private ProductController productController;
 	
-	public SaleOrderController() {
-		try {
-			saleOrderDatabase = new SaleOrderDB();
-		} catch (DatabaseAccessException e) {
-			e.printStackTrace();
-		}
+	public SaleOrderController() throws DatabaseAccessException {
+		
+		saleOrderDatabase = new SaleOrderDB();
 		personController = new PersonController();
 	}
 	
