@@ -6,6 +6,7 @@ public class Copy {
 	private int copyID;
 	private boolean inRentable;
 	private LocalDate rentDate;
+	private double rentPrice;
 	private Product product;
 	
 	//Constructor for Copy
@@ -16,7 +17,7 @@ public class Copy {
 	}
 	//Returns the price of the copy
 	public double getRentPrice() {
-	return rentPrice();
+	return rentPrice;
 	}
 	//Sets the price of the copy
 	public void setRentPrice(double rentPrice) {
