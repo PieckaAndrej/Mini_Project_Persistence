@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import exceptions.DatabaseAccessException;
 import model.SaleOrder;
 
 public class SaleOrderDB implements SaleOrderDBIF {
@@ -13,16 +14,17 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	
 	private PreparedStatement createStatement;
 	
-	public SaleOrderDB() {
+	public SaleOrderDB() throws DatabaseAccessException {
 		try {
 			createStatement = DbConnection.getInstance().getConnection().prepareStatement(CREATE_STATEMENT);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw new DatabaseAccessException(DatabaseAccessException.CONNECTION_MESSAGE);
 		}
 	}
 
 	@Override
-	public SaleOrder insertOrder(SaleOrder order) {
+	public SaleOrder insertOrder(SaleOrder order) throws DatabaseAccessException {	
 		try {
 			createStatement.setTimestamp(1, Timestamp.valueOf(order.getDate()));
 			createStatement.setString(2, order.getDeliveryStatus());
@@ -34,7 +36,8 @@ public class SaleOrderDB implements SaleOrderDBIF {
 			order.setId(DbConnection.getInstance().executeSqlInsertWithIdentity(createStatement));
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw new DatabaseAccessException(e.getMessage());
 		}
 		
 		return order;
