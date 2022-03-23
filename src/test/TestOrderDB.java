@@ -14,6 +14,7 @@ import dal.DbConnection;
 import dal.PersonDB;
 import dal.ProductDB;
 import dal.SaleOrderDB;
+import exceptions.DatabaseAccessException;
 import model.SaleOrder;
 import model.SaleOrderLine;
 
@@ -23,7 +24,11 @@ class TestOrderDB {
 	
 	@BeforeEach
 	void setUp() {
-		orderDB = new SaleOrderDB();
+		try {
+			orderDB = new SaleOrderDB();
+		} catch (DatabaseAccessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
@@ -37,7 +42,11 @@ class TestOrderDB {
 		order.addOrderLine(new SaleOrderLine(new ProductDB().getProductByID(productId), 1));
 		
 		// act
-		orderDB.insertOrder(order);
+		try {
+			orderDB.insertOrder(order);
+		} catch (DatabaseAccessException e) {
+			e.printStackTrace();
+		}
 		
 		PreparedStatement prst;
 		

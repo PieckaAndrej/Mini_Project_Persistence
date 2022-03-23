@@ -5,11 +5,12 @@ public class SaleOrderLine extends OrderLine {
 
 	public SaleOrderLine(Product product, int quantity) {
 		super(quantity);
+		this.product = product;
 	}
 
 	@Override
 	public double getAmount() {
-		return product.getSalesPrice();
+		return product.getSalesPrice() * super.getQuantity();
 	}
 
 }
