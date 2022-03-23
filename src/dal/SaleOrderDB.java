@@ -22,8 +22,7 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	}
 
 	@Override
-	public boolean insertOrder(SaleOrder order) {
-		boolean retVal = false;
+	public SaleOrder insertOrder(SaleOrder order) {
 		try {
 			createStatement.setTimestamp(1, Timestamp.valueOf(order.getDate()));
 			createStatement.setString(2, order.getDeliveryStatus());
@@ -32,14 +31,13 @@ public class SaleOrderDB implements SaleOrderDBIF {
 			createStatement.setDouble(5, order.getAmount());
 			createStatement.setString(6, order.getCustomer().getPhone());
 			
-			createStatement.executeUpdate();
+			order.setId(DbConnection.getInstance().executeSqlInsertWithIdentity(createStatement));
 			
-			retVal = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return retVal;
+		return order;
 	}
 
 }
