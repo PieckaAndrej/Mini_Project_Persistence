@@ -1,5 +1,7 @@
 package model;
 
+import java.math.BigDecimal;
+
 public abstract class OrderLine {
 	private int quantity;
 	
@@ -11,7 +13,7 @@ public abstract class OrderLine {
 	 * Get amount of money that this orderline costs
 	 * @return Amount of money
 	 */
-	public abstract double getAmount();
+	public abstract BigDecimal getAmount();
 	
 	public int getQuantity() {
 		return quantity;

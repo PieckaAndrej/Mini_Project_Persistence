@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,12 +27,12 @@ class TestSaleOrder {
 		int productPrice = 1;
 		int productQuantity = 3;
 		
-		Product product = new Product(null, null, 0, productPrice, null, 0);
+		Product product = new Product(null, null, null, new BigDecimal(productPrice), null, 0);
 		SaleOrderLine orderLine = new SaleOrderLine(product, productQuantity);
 		
 		saleOrder.addOrderLine(orderLine);
 		
-		assertEquals(productPrice * productQuantity, saleOrder.getAmount(), 0);
+		assertEquals(new BigDecimal(productPrice * productQuantity), saleOrder.getAmount());
 	}
 	
 	@Test
@@ -39,7 +41,7 @@ class TestSaleOrder {
 		int productQuantity = 3;
 		int orderLines = 2;
 		
-		Product product = new Product(null, null, 0, productPrice, null, 0);
+		Product product = new Product(null, null, null, new BigDecimal(productPrice), null, 0);
 		
 		
 		SaleOrderLine orderLine = new SaleOrderLine(product, productQuantity);
@@ -48,7 +50,7 @@ class TestSaleOrder {
 			saleOrder.addOrderLine(orderLine);
 		}
 		
-		assertEquals(productPrice * productQuantity * orderLines, saleOrder.getAmount(), 0);
+		assertEquals(new BigDecimal(productPrice * productQuantity * orderLines), saleOrder.getAmount());
 	}
 
 }

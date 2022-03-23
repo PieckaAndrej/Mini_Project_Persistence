@@ -1,5 +1,7 @@
 package model;
 
+import java.math.BigDecimal;
+
 public class SaleOrderLine extends OrderLine {
 	private Product product;
 
@@ -9,8 +11,8 @@ public class SaleOrderLine extends OrderLine {
 	}
 
 	@Override
-	public double getAmount() {
-		return product.getSalesPrice() * super.getQuantity();
+	public BigDecimal getAmount() {
+		return product.getSalesPrice().multiply(new BigDecimal(super.getQuantity()));
 	}
 
 }

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,11 @@ import model.SaleOrderLine;
 class TestOrderDB {
 	
 	private SaleOrderDB orderDB;
+	
+	@BeforeAll
+	void databaseSetUp() {
+		
+	}
 	
 	@BeforeEach
 	void setUp() {
@@ -61,7 +67,7 @@ class TestOrderDB {
 				assertEquals(order.getDeliveryStatus(), rs.getString(2));
 				assertEquals(Timestamp.valueOf(order.getDeliveryDate()), rs.getTimestamp(3));
 				assertEquals(Timestamp.valueOf(order.getPaymentDate()), rs.getTimestamp(4));
-				assertEquals(order.getAmount(), rs.getDouble(5), 0);
+				assertEquals(order.getAmount(), rs.getBigDecimal(5));
 				assertEquals(order.getCustomer().getPhone(), rs.getString(6));
 			}
 		} catch (SQLException e1) {

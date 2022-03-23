@@ -1,4 +1,5 @@
 package model;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Copy {
@@ -6,7 +7,7 @@ public class Copy {
 	private int copyID;
 	private boolean inRentable;
 	private LocalDate rentDate;
-	private double rentPrice;
+	private BigDecimal rentPrice;
 	private Product product;
 	
 	//Constructor for Copy
@@ -16,11 +17,11 @@ public class Copy {
 		this.rentDate = rentDate;
 	}
 	//Returns the price of the copy
-	public double getRentPrice() {
-	return rentPrice;
+	public BigDecimal getRentPrice() {
+		return rentPrice;
 	}
 	//Sets the price of the copy
-	public void setRentPrice(double rentPrice) {
+	public void setRentPrice(BigDecimal rentPrice) {
 		this.rentPrice = rentPrice;
 	}
 	//Checks if the copy is rentable

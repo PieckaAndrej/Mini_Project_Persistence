@@ -37,6 +37,6 @@ public class ProductDB implements ProductDBIF {
 	}
 
 	private Product buildObject(ResultSet rs) throws SQLException {
-		return new Product(rs.getString("id"), rs.getString("name"), rs.getDouble("purchasePrice"), rs.getDouble("salesPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"));
+		return new Product(rs.getString("id"), rs.getString("name"), rs.getBigDecimal("purchasePrice"), rs.getBigDecimal("salesPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"));
 	}
 }

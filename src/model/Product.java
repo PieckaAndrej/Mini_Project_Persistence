@@ -1,17 +1,18 @@
 package model;
 
+import java.math.BigDecimal;
+
 public class Product {
 	
 	private String id;
 	private String name;
-	private double puchasePrice;
-	private double salesPrice;
+	private BigDecimal puchasePrice;
+	private BigDecimal salesPrice;
 	private String countryOfOrigin;
 	private int minStock;
 	
-	public Product(String id, String name, double puchasePrice, double salesPrice, String countryOfOrigin,
-			int minStock) {
-		super();
+	public Product(String id, String name, BigDecimal puchasePrice,
+			BigDecimal salesPrice, String countryOfOrigin, int minStock) {
 		this.id = id;
 		this.name = name;
 		this.puchasePrice = puchasePrice;
@@ -36,19 +37,19 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPuchasePrice() {
+	public BigDecimal getPuchasePrice() {
 		return puchasePrice;
 	}
 
-	public void setPuchasePrice(double puchasePrice) {
+	public void setPuchasePrice(BigDecimal puchasePrice) {
 		this.puchasePrice = puchasePrice;
 	}
 
-	public double getSalesPrice() {
+	public BigDecimal getSalesPrice() {
 		return salesPrice;
 	}
 
-	public void setSalesPrice(double salesPrice) {
+	public void setSalesPrice(BigDecimal salesPrice) {
 		this.salesPrice = salesPrice;
 	}
 

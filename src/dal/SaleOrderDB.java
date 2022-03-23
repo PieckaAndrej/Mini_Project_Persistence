@@ -30,7 +30,7 @@ public class SaleOrderDB implements SaleOrderDBIF {
 			createStatement.setString(2, order.getDeliveryStatus());
 			createStatement.setTimestamp(3, Timestamp.valueOf(order.getDeliveryDate()));
 			createStatement.setTimestamp(4, Timestamp.valueOf(order.getPaymentDate()));
-			createStatement.setDouble(5, order.getAmount());
+			createStatement.setBigDecimal(5, order.getAmount());
 			createStatement.setString(6, order.getCustomer().getPhone());
 			
 			order.setId(DbConnection.getInstance().executeSqlInsertWithIdentity(createStatement));

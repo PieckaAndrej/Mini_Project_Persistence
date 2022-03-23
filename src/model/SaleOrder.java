@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,14 +69,14 @@ public class SaleOrder {
 	 * Get sum of all orderlines
 	 * @return Get amount from all orderlines
 	 */
-	public double getAmount() {
+	public BigDecimal getAmount() {
 		double retVal = 0;
 		
 		for (OrderLine element : orderLines) {
-			retVal += element.getAmount();
+			retVal += element.getAmount().doubleValue();
 		}
 		
-		return retVal;
+		return new BigDecimal(retVal);
 	}
 
 	public Person getCustomer() {
