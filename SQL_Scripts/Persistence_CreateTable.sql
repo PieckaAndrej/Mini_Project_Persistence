@@ -85,16 +85,17 @@ CREATE TABLE dbo.[Copy] (
 
 GO
 
-/*drop table if exists dbo.SaleOrderLine;
+/*drop table if exists dbo.RentOrderLine;
 ALTER TABLE dbo.SaleOrderLine
-DROP CONSTRAINT SaleOrderLineFK, CopyOrderLineFK;*/
+DROP CONSTRAINT RentOrderLineFK, CopyOrderLineFK;*/
 
-CREATE TABLE dbo.SaleOrderLine (
-	amount int NOT NULL,
+CREATE TABLE dbo.RentOrderLine (
+	quantity int NOT NULL,
 	copyId int, 
 	saleId int,
+	rentDate datetime NOT NULL,
 	PRIMARY KEY (copyId, saleId),
-	CONSTRAINT SaleOrderLineFK
+	CONSTRAINT RentOrderLineFK
 		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
 		ON DELETE CASCADE,
 	CONSTRAINT CopyOrderLineFK
@@ -103,6 +104,25 @@ CREATE TABLE dbo.SaleOrderLine (
 	)  
 
 GO
+
+/*drop table if exists dbo.SaleOrderLine;
+ALTER TABLE dbo.SaleOrderLine
+DROP CONSTRAINT SaleOrderLineFK, CopyOrderLineFK;*/
+
+CREATE TABLE dbo.SaleOrderLine (
+	quantity int NOT NULL,
+	productId int, 
+	saleId int,
+	CONSTRAINT SaleOrderLineFK
+		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
+		ON DELETE CASCADE,
+	CONSTRAINT CopyOrderLineFK
+		FOREIGN KEY (productId) REFERENCES Product(id)
+		ON DELETE CASCADE,
+	)  
+
+GO
+
 
 /*drop table if exists dbo.Clothing;
 ALTER TABLE dbo.Clothing
