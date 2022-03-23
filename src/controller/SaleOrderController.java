@@ -2,6 +2,7 @@ package controller;
 
 import dal.SaleOrderDB;
 import dal.SaleOrderDBIF;
+import exceptions.DatabaseAccessException;
 import model.Person;
 import model.Product;
 import model.SaleOrder;
@@ -14,7 +15,11 @@ public class SaleOrderController {
 	private ProductController productController;
 	
 	public SaleOrderController() {
-		saleOrderDatabase = new SaleOrderDB();
+		try {
+			saleOrderDatabase = new SaleOrderDB();
+		} catch (DatabaseAccessException e) {
+			e.printStackTrace();
+		}
 		personController = new PersonController();
 	}
 	
@@ -52,12 +57,15 @@ public class SaleOrderController {
 	public boolean finishOrder() {
 		boolean retVal = false;
 		
-		if(saleOrderDatabase.insertOrder(currentOrder) != null)
-		{
+		try {
+			saleOrderDatabase.insertOrder(currentOrder);
+			
+			currentOrder = null;
 			retVal = true;
+			
+		} catch (DatabaseAccessException e) {
+			e.printStackTrace();
 		}
-		
-		currentOrder = null;
 		
 		return retVal;
 	}
