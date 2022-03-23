@@ -1,17 +1,17 @@
 package controller;
-import database.ProductDb;
+import dal.ProductDB;
+import dal.ProductDBIF;
 import model.Product;
 
 
 public class ProductController {
+	private ProductDBIF productDatabase;
 
 	public ProductController() {
-		
-		public Product createProduct(String id, String name, double salesPrice, double rentPrice, String countryOfOrigin, int minStock) {
-			
-		}
-		public Product getProductById(String id) {
-			return ProductDb.getInstance().getProduct(id);
-		}
+		productDatabase = new ProductDB();
+	}
+	
+	public Product getProductById(String id) {
+		return productDatabase.getProductByID(id);
 	}
 }
