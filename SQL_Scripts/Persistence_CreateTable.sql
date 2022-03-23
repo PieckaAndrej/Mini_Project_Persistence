@@ -1,6 +1,39 @@
-USE CSC-CSD-S211_10407533
+USE [CSC-CSD-S211_10407533]
 
-/*drop table if exists dbo.Country;*/
+
+ALTER TABLE dbo.Person
+DROP CONSTRAINT if exists PersonLocationFK;
+ALTER TABLE dbo.SaleOrder
+DROP CONSTRAINT if exists CustomerOrderFK;
+ALTER TABLE dbo.Product
+DROP CONSTRAINT if exists SupplierProductFK
+ALTER TABLE dbo.[Copy]
+DROP CONSTRAINT if exists ProductCopyFK;
+ALTER TABLE dbo.RentOrderLine
+DROP CONSTRAINT if exists RentOrderLineFK, CopyRentOrderLineFK;
+ALTER TABLE dbo.SaleOrderLine
+DROP CONSTRAINT if exists SaleOrderLineFK, CopySaleOrderLineFK;
+ALTER TABLE dbo.Clothing
+DROP CONSTRAINT if exists ClothingProductFK;
+ALTER TABLE dbo.Equipment
+DROP CONSTRAINT if exists EquipmentProductFK;
+ALTER TABLE dbo.GunReplica
+DROP CONSTRAINT if exists GunReplicaProductFK;
+
+GO
+
+drop table if exists dbo.Country;
+drop table if exists dbo.GunReplica;
+drop table if exists dbo.Person;
+drop table if exists dbo.SaleOrder;
+drop table if exists dbo.Product;;
+drop table if exists dbo.[Copy];
+drop table if exists dbo.RentOrderLine;
+drop table if exists dbo.SaleOrderLine;
+drop table if exists dbo.Clothing;
+drop table if exists dbo.Equipment;
+
+
 
 CREATE TABLE dbo.Country (
 	country VARCHAR(20) NOT NULL,
@@ -11,9 +44,6 @@ CREATE TABLE dbo.Country (
 
 GO
 
-/*drop table if exists dbo.Person;
-ALTER TABLE dbo.Country
-DROP CONSTRAINT PersonLocationFK;*/
 
 CREATE TABLE dbo.Person (
 	[name] VARCHAR(25) NOT NULL,
@@ -29,9 +59,6 @@ CREATE TABLE dbo.Person (
 
 GO
 
-/*drop table if exists dbo.SaleOrder;
-ALTER TABLE dbo.SaleOrder
-DROP CONSTRAINT CustomerOrderFK;*/
 
 CREATE TABLE dbo.SaleOrder (
    id int PRIMARY KEY IDENTITY(1,1),  
@@ -48,9 +75,6 @@ CREATE TABLE dbo.SaleOrder (
 
 GO
 
-/*drop table if exists dbo.Product;
-ALTER TABLE dbo.Product
-DROP CONSTRAINT SupplierProductFK;*/
 
 CREATE TABLE dbo.Product (
 	id int PRIMARY KEY IDENTITY(1,1),
@@ -69,10 +93,6 @@ CREATE TABLE dbo.Product (
 
 GO
 
-/*drop table if exists dbo.[Copy];
-ALTER TABLE dbo.[Copy]
-DROP CONSTRAINT ProductCopyFK;*/
-
 CREATE TABLE dbo.[Copy] (
 	copyId int PRIMARY KEY IDENTITY(1,1), 
 	isRentable bit,
@@ -85,9 +105,6 @@ CREATE TABLE dbo.[Copy] (
 
 GO
 
-/*drop table if exists dbo.RentOrderLine;
-ALTER TABLE dbo.SaleOrderLine
-DROP CONSTRAINT RentOrderLineFK, CopyOrderLineFK;*/
 
 CREATE TABLE dbo.RentOrderLine (
 	quantity int NOT NULL,
@@ -98,16 +115,12 @@ CREATE TABLE dbo.RentOrderLine (
 	CONSTRAINT RentOrderLineFK
 		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
 		ON DELETE CASCADE,
-	CONSTRAINT CopyOrderLineFK
+	CONSTRAINT CopyRentOrderLineFK
 		FOREIGN KEY (copyId) REFERENCES [Copy](copyId)
 		ON DELETE CASCADE,
 	)  
 
 GO
-
-/*drop table if exists dbo.SaleOrderLine;
-ALTER TABLE dbo.SaleOrderLine
-DROP CONSTRAINT SaleOrderLineFK, CopyOrderLineFK;*/
 
 CREATE TABLE dbo.SaleOrderLine (
 	quantity int NOT NULL,
@@ -117,17 +130,12 @@ CREATE TABLE dbo.SaleOrderLine (
 	CONSTRAINT SaleOrderLineFK
 		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)
 		ON DELETE CASCADE,
-	CONSTRAINT CopyOrderLineFK
+	CONSTRAINT CopySaleOrderLineFK
 		FOREIGN KEY (productId) REFERENCES Product(id)
 		ON DELETE CASCADE,
 	)  
 
 GO
-
-
-/*drop table if exists dbo.Clothing;
-ALTER TABLE dbo.Clothing
-DROP CONSTRAINT ClothingProductFK;*/
 
 CREATE TABLE dbo.Clothing (
 	size VARCHAR(5) NOT NULL,
@@ -140,10 +148,6 @@ CREATE TABLE dbo.Clothing (
 
 GO
 
-/*drop table if exists dbo.Equipment;
-ALTER TABLE dbo.Equipment
-DROP CONSTRAINT EquipmentProductFK;*/
-
 CREATE TABLE dbo.Equipment (
 	[type] VARCHAR(20) NOT NULL,
 	[description] VARCHAR(100) NOT NULL,
@@ -154,10 +158,6 @@ CREATE TABLE dbo.Equipment (
 	)
 
 GO
-
-/*drop table if exists dbo.GunReplica;
-ALTER TABLE dbo.GunReplica
-DROP CONSTRAINT GunReplicaProductFK;*/
 
 CREATE TABLE dbo.GunReplica (
 	calibre decimal(5,2) NOT NULL,
