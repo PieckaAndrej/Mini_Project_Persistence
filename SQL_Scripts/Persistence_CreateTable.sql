@@ -79,9 +79,9 @@ GO
 CREATE TABLE dbo.Product (
 	id int PRIMARY KEY IDENTITY(1,1),
 	[name] VARCHAR(25) NOT NULL,
-	purchasePrice int NOT NULL,
-	salesPrice int NOT NULL,
-	rentPrice int NOT NULL,
+	purchasePrice MONEY NOT NULL,
+	salesPrice MONEY NOT NULL,
+	rentPrice MONEY NOT NULL,
 	countryOfOrigin VARCHAR(20) NOT NULL,
 	minStock int NOT NULL,
 	currentStock int NOT NULL,
