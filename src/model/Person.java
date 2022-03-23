@@ -1,6 +1,6 @@
 package model;
 
-public class Customer {
+public class Person {
 	private String name;
 	private String address;
 	private String city;
@@ -8,7 +8,7 @@ public class Customer {
 	private int zipcode;
 	
 	
-	public Customer(String name, String address, String city, String phone, int zipcode) {
+	public Person(String name, String address, String city, String phone, int zipcode) {
 		super();
 		this.name = name;
 		this.address = address;
