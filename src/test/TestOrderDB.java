@@ -46,6 +46,7 @@ class TestOrderDB {
 			
 			ResultSet rs = prst.getResultSet();
 			
+			// assert
 			if (rs.next()) {
 				assertEquals(Timestamp.valueOf(order.getDate()), rs.getTimestamp(1));
 				assertEquals(order.getDeliveryStatus(), rs.getString(2));
@@ -58,12 +59,6 @@ class TestOrderDB {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
-		
-		// assert
-		
-		
 	
 	}
 

@@ -1,9 +1,9 @@
 package controller;
 
-import model.SaleOrder;
-import model.OrderLine;
-import dal.SaleOrderDBIF;
 import dal.SaleOrderDB;
+import dal.SaleOrderDBIF;
+import model.Person;
+import model.SaleOrder;
 
 public class SaleOrderController {
 	private SaleOrderDBIF saleOrderDatabase;
@@ -15,9 +15,19 @@ public class SaleOrderController {
 		personController = new PersonController();
 	}
 	
-	public SaleOrder createOrder(String phone) {
-		currentOrder = new SaleOrder(personController.getPersonByPhone(phone));
+	public boolean createOrder(String phone) {
+		boolean retVal = false;
+		
+		Person person = personController.getPersonByPhone(phone);
+		
+		if (person != null) {
+			currentOrder = new SaleOrder(person);
+			retVal = true;
+		}
+		
+		return retVal;
 	}
+	
 	public SaleOrder addProduct(int id, int amount) {
 		return null;
 		
