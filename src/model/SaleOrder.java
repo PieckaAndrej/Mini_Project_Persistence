@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +119,7 @@ public class SaleOrder {
 			retVal = retVal + 45;
 		}
 		
-		return new BigDecimal(retVal);
+		return new BigDecimal(retVal).setScale(4, RoundingMode.CEILING);
 	}
 
 	/**

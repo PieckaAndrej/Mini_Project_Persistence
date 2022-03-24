@@ -17,7 +17,7 @@ public class ProductDB implements ProductDBIF {
 	public Product getProductByID(int id) {
 		Product product = null;
 		
-		String sqlString = "SELECT Product WHERE id = ?";
+		String sqlString = "SELECT * FROM Product WHERE id = ?";
 		Connection con = DbConnection.getInstance().getConnection();
 
 		try {

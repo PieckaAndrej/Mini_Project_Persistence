@@ -34,14 +34,21 @@ public class PersonDB implements PersonDBIF {
 		Person person = null;
 
 		String sqlString = "SELECT * FROM Person WHERE phoneno = ?";
+		String sqlFindCity = "SELECT City FROM Country WHERE country = ? and zipcode = ?";
 		Connection connection = DbConnection.getInstance().getConnection();
 
 		try {
 			PreparedStatement st  = connection.prepareStatement(sqlString);
+			PreparedStatement stFindCity  = connection.prepareStatement(sqlFindCity);
 			st.setString(1, phone);
 			ResultSet rs = st.executeQuery();
 			if (rs.next()) {
-				person = buildObject(rs);
+				stFindCity.setString(1, rs.getString("country"));
+				stFindCity.setString(2, rs.getString("zipcode"));
+				ResultSet rsCity = stFindCity.executeQuery();
+				if(rsCity.next()) {
+					person = buildObject(rs, rsCity);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,10 +56,10 @@ public class PersonDB implements PersonDBIF {
 		return person;
 	}
 	
-	private Person buildObject(ResultSet rs) throws SQLException {
+	private Person buildObject(ResultSet rs, ResultSet rsCity) throws SQLException {
 		return new Person(rs.getString("name"), rs.getString("address"),
-				rs.getString("country"), rs.getString("zipcode"),
-				rs.getString("phoneno"), rs.getString("country"), rs.getString("email"));
+				rsCity.getString("city"), rs.getString("phoneno"),
+				rs.getString("zipcode"), rs.getString("country"), rs.getString("email"));
 	}
 
 }

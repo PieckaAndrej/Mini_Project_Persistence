@@ -54,8 +54,7 @@ public class DbConnection {
 			selectSessionInfo = conn.prepareStatement("select @@SPID");
 			ResultSet sessionInfoRows = selectSessionInfo.executeQuery();
 			sessionInfoRows.next();
-			System.out.println(Thread.currentThread().getName() + " - Session: " + sessionInfoRows.getInt(1) +
-					", IsolationLevel: " + conn.getTransactionIsolation());	
+			System.out.println(Thread.currentThread().getName()+ " - Session: "+ sessionInfoRows.getInt(1) + ", IsolationLevel: "+ conn.getTransactionIsolation());	
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

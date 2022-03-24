@@ -2,6 +2,7 @@ package dal;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 
 import exceptions.DatabaseAccessException;
@@ -16,7 +17,7 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	
 	public SaleOrderDB() throws DatabaseAccessException {
 		try {
-			createStatement = DbConnection.getInstance().getConnection().prepareStatement(CREATE_STATEMENT);
+			createStatement = DbConnection.getInstance().getConnection().prepareStatement(CREATE_STATEMENT, Statement.RETURN_GENERATED_KEYS);
 		} catch (SQLException e) {
 			//e.printStackTrace();
 			throw new DatabaseAccessException(DatabaseAccessException.CONNECTION_MESSAGE);

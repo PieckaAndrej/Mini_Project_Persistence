@@ -62,11 +62,11 @@ GO
 
 CREATE TABLE dbo.SaleOrder (
    id int PRIMARY KEY IDENTITY(1,1),  
-   [date] datetime NOT NULL,  
-   deliveryStatus bit,
-   deliveryDate datetime NOT NULL,
-   paymentDate datetime NOT NULL,
-   amount int NOT NULL,
+   [date] DATETIME2(7) NOT NULL,  
+   deliveryStatus VARCHAR(10),
+   deliveryDate DATETIME2(7) NOT NULL,
+   paymentDate DATETIME2(7) NOT NULL,
+   amount MONEY NOT NULL,
    customerPhoneno VARCHAR(10),
    CONSTRAINT CustomerOrderFK
 		FOREIGN KEY (customerPhoneno) REFERENCES Person(phoneno)
@@ -94,7 +94,7 @@ GO
 
 CREATE TABLE dbo.[Copy] (
 	copyId int PRIMARY KEY IDENTITY(1,1),
-	rentDate datetime NOT NULL,
+	rentDate DATETIME2(7) NOT NULL,
 	rentPrice MONEY NOT NULL,
 	productId int,
 	CONSTRAINT ProductCopyFK
@@ -109,7 +109,7 @@ CREATE TABLE dbo.RentOrderLine (
 	quantity int NOT NULL,
 	copyId int, 
 	saleId int,
-	rentDate datetime NOT NULL,
+	rentDate DATETIME2(7) NOT NULL,
 	PRIMARY KEY (copyId, saleId),
 	CONSTRAINT RentOrderLineFK
 		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)

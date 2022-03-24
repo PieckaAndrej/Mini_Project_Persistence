@@ -43,7 +43,6 @@ class TestOrderDB {
 		
 		SaleOrder order = new SaleOrder(new PersonDB().getPersonByPhone(customerPhone));
 		order.addOrderLine(new SaleOrderLine(new ProductDB().getProductByID(productId), 1));
-		
 		order.setDate(LocalDateTime.now());
 		order.setDeliveryDate(LocalDateTime.now());
 		order.setPaymentDate(LocalDateTime.now());
@@ -62,16 +61,16 @@ class TestOrderDB {
 		try {
 			prst = DbConnection.getInstance().getConnection().prepareStatement(getLastQuery);
 			
-			ResultSet rs = prst.getResultSet();
+			ResultSet rs = prst.executeQuery();
 			
 			// assert
 			if (rs.next()) {
-				assertEquals(Timestamp.valueOf(order.getDate()), rs.getTimestamp(1));
-				assertEquals(order.getDeliveryStatus(), rs.getString(2));
-				assertEquals(Timestamp.valueOf(order.getDeliveryDate()), rs.getTimestamp(3));
-				assertEquals(Timestamp.valueOf(order.getPaymentDate()), rs.getTimestamp(4));
-				assertEquals(order.getAmount(), rs.getBigDecimal(5));
-				assertEquals(order.getCustomer().getPhoneno(), rs.getString(6));
+				assertEquals(Timestamp.valueOf(order.getDate()), rs.getTimestamp("date"));
+				assertEquals(order.getDeliveryStatus(), rs.getString("deliveryStatus"));
+				assertEquals(Timestamp.valueOf(order.getDeliveryDate()), rs.getTimestamp("deliveryDate"));
+				assertEquals(Timestamp.valueOf(order.getPaymentDate()), rs.getTimestamp("paymentDate"));
+				assertEquals(order.getAmount(), rs.getBigDecimal("amount"));
+				assertEquals(order.getCustomer().getPhoneno(), rs.getString("customerPhoneno"));
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
