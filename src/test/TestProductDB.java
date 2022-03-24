@@ -39,7 +39,7 @@ public class TestProductDB {
 	@Test
 	public void ProductIDTest() {
 		String command1 = "SELECT * FROM Product WHERE id = 1;";
-		Product product = productDb.getProductByID(3);
+		Product product = productDb.getProductByID(1);
 		
 		PreparedStatement ps;
 		try {
