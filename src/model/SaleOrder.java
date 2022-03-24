@@ -121,6 +121,17 @@ public class SaleOrder {
 		
 		return new BigDecimal(retVal).setScale(4, RoundingMode.CEILING);
 	}
+	
+	public BigDecimal getPrice()
+	{
+		double retVal = 0;
+		
+		for (OrderLine element : orderLines) {
+			retVal += element.getAmount().doubleValue();
+		}
+		
+		return new BigDecimal(retVal).setScale(4, RoundingMode.CEILING);
+	}
 
 	/**
 	 * @return customer
