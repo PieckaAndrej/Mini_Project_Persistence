@@ -76,6 +76,15 @@ public class SaleOrder {
 			retVal += element.getAmount().doubleValue();
 		}
 		
+		if(retVal >= 2500)
+		{
+			retVal = retVal - 100;
+		}
+		else
+		{
+			retVal = retVal + 45;
+		}
+		
 		return new BigDecimal(retVal);
 	}
 
