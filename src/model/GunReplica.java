@@ -4,28 +4,41 @@ import java.math.BigDecimal;
 
 public class GunReplica extends Product {
 
-	private double calibre;
+	private double caliber;
 	private String material;
 	
+	/**
+	 * Constructor for the GunReplica class
+	 * @param id the id of the gun replica
+	 * @param name the name of the gun replica
+	 * @param puchasePrice the purchase price of the gun replica
+	 * @param salesPrice the sales price of the gun replica
+	 * @param countryOfOrigin the country of origin of the gun replica
+	 * @param minStock the minimum stock of the gun replica before reordering
+	 * @param currentStock the current stock of the gun replica
+	 * @param supplierPhoneno the supplier's phone number who supplies the gun replica
+	 * @param calibre the caliber of the gun replica
+	 * @param material the material of the gun replica
+	 */
 	public GunReplica(int id, String name, BigDecimal puchasePrice, BigDecimal salesPrice, String countryOfOrigin,
-			int minStock,  int currentStock, String supplierPhoneno, double calible, String material) {
+			int minStock,  int currentStock, String supplierPhoneno, double caliber, String material) {
 		super(id, name, puchasePrice, salesPrice, countryOfOrigin, minStock, currentStock, supplierPhoneno);
-		this.calibre = calible;
+		this.caliber = caliber;
 		this.material = material;
 	}
 
 	/**
-	 * @return the calibre
+	 * @return the caliber
 	 */
-	public double getCalibre() {
-		return calibre;
+	public double getCaliber() {
+		return caliber;
 	}
 
 	/**
-	 * @param calibre the calibre to set
+	 * @param calibre the caliber to set
 	 */
-	public void setCalibre(double calibre) {
-		this.calibre = calibre;
+	public void setCaliber(double caliber) {
+		this.caliber = caliber;
 	}
 
 	/**

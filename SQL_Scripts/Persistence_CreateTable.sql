@@ -109,7 +109,6 @@ CREATE TABLE dbo.RentOrderLine (
 	quantity int NOT NULL,
 	copyId int, 
 	saleId int,
-	rentDate DATETIME2(7) NOT NULL,
 	PRIMARY KEY (copyId, saleId),
 	CONSTRAINT RentOrderLineFK
 		FOREIGN KEY (saleId) REFERENCES SaleOrder(id)

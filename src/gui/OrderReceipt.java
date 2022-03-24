@@ -170,24 +170,24 @@ public class OrderReceipt extends JDialog {
 			
 			lblNewLabel.setText(returnString.toString());
 		}
-		if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(1500)) == 1 && orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2500)) == -1) {
+		if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(1445)) == 1 || orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2400)) == -1) {
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setFont(ColorScheme.FONT);
 			verticalBox.add(lblNewLabel);
 			
+			JLabel lblNewLabel1 = new JLabel("");
+			lblNewLabel1.setFont(ColorScheme.FONT);
+			verticalBox.add(lblNewLabel1);
+			
 			StringBuilder returnString = new StringBuilder();
 			returnString.append("Delivery price: 45");
-			
-			JLabel lblNewLabel1 = new JLabel("");
-			lblNewLabel.setFont(ColorScheme.FONT);
-			verticalBox.add(lblNewLabel);
-			
 			StringBuilder returnString1 = new StringBuilder();
 			returnString1.append("Discount: -100");
 			
 			lblNewLabel.setText(returnString.toString());
+			lblNewLabel1.setText(returnString1.toString());
 		}
-		else if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2500)) == 1) {
+		else if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2400)) == 1) {
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setFont(ColorScheme.FONT);
 			verticalBox.add(lblNewLabel);

@@ -23,7 +23,12 @@ public class TestPersonDB {
 	
 	@BeforeEach
 	void setUp() {
-		personDB = new PersonDB();
+		try {
+			personDB = new PersonDB();
+		} catch (DatabaseAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
@@ -33,7 +38,7 @@ public class TestPersonDB {
 		
 		String getQuery1 = "SELECT city FROM Country WHERE country = 'Denmark' and zipcode = '9000';";
 		
-		Person person = personDB.getPersonByPhone("1234567890");
+		Person person = personDB.findByPhone("1234567890");
 		
 		PreparedStatement prst;
 		

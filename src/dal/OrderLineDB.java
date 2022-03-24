@@ -9,19 +9,27 @@ import model.SaleOrderLine;
 
 public class OrderLineDB implements OrderLineDBIF {
 	
-	private static final String CREATESALEORDERLINE_STATEMENT = "INSERT INTO SaleOrderLine(quantity, productId,"
+	private static final String CREATE_SALE_ORDER_LINE_STATEMENT = "INSERT INTO SaleOrderLine(quantity, productId,"
 			+ " saleId) VALUES(?, ?, ?)";
-	private PreparedStatement createStatement;
+	private PreparedStatement createSaleOrderLineStatement;
 
 	public OrderLineDB() throws DatabaseAccessException {
 		try {
-			createStatement = DbConnection.getInstance().getConnection().prepareStatement(CREATESALEORDERLINE_STATEMENT);
+			createSaleOrderLineStatement = DbConnection.getInstance().getConnection().
+					prepareStatement(CREATE_SALE_ORDER_LINE_STATEMENT);
 		} catch (SQLException e) {
 			//e.printStackTrace();
 			throw new DatabaseAccessException(DatabaseAccessException.CONNECTION_MESSAGE);
 		}
 	}
 	
+	/**
+	 * Inserts the sale order line into the sale order line table or the rent order line table 
+	 * into the rent order line table
+	 * @param orderLine the orderLine to add to the table
+	 * @param saleId the id of the sale which contains the order line
+	 * @throws DatabaseAccessException
+	 */
 	@Override
 	public void insertOrderLine(OrderLine orderLine, int saleId) throws DatabaseAccessException {
 		if(orderLine instanceof SaleOrderLine) {
@@ -30,16 +38,21 @@ public class OrderLineDB implements OrderLineDBIF {
 		}
 	}
 	
+	/**
+	 * Inserts the sale order line into the sale order line table
+	 * @param orderLine the orderLine to add to the table
+	 * @param saleId the id of the sale which contains the order line
+	 * @throws DatabaseAccessException
+	 */
 	private void insertSaleOrderLine(SaleOrderLine orderLine, int saleId) throws DatabaseAccessException {
 		try {
-			createStatement.setInt(1, orderLine.getQuantity());
-			createStatement.setInt(2, orderLine.getProduct().getId());
-			createStatement.setInt(3, saleId);
+			createSaleOrderLineStatement.setInt(1, orderLine.getQuantity());
+			createSaleOrderLineStatement.setInt(2, orderLine.getProduct().getId());
+			createSaleOrderLineStatement.setInt(3, saleId);
 			
-			createStatement.executeUpdate();
+			createSaleOrderLineStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new DatabaseAccessException(e.getMessage());
 		}
 	}

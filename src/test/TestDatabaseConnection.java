@@ -15,7 +15,7 @@ public class TestDatabaseConnection {
 
 	@BeforeEach
 	public void setUp() {
-		con = DbConnection.getInstance().getConnection(0);
+		con = DbConnection.getInstance().getConnection();
 	}
 	
 	

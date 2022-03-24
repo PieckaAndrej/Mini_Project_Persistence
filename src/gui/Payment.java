@@ -41,7 +41,7 @@ public class Payment extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			JLabel lblNewLabel = new JLabel("Was payment of " + orderctrl.getCurrentOrder().getAmount() + " successful?");
+			JLabel lblNewLabel = new JLabel("Was payment of " + orderctrl.getCurrentOrder().getPrice() + " successful?");
 			lblNewLabel.setFont(ColorScheme.FONT);
 			contentPanel.add(lblNewLabel);
 		}

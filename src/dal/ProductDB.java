@@ -13,10 +13,18 @@ import model.Product;
 
 public class ProductDB implements ProductDBIF {
 
+	/**
+	 * Constructor for the ProductDB
+	 */
 	public ProductDB() {
 
 	}
 	
+	/**
+	 * Finds a product by its id in the database and returns it
+	 * @param id the id of the product to search for
+	 * @return the product with the corresponding id
+	 */
 	@Override
 	public Product getProductByID(int id) {
 		Product product = null;
@@ -43,6 +51,12 @@ public class ProductDB implements ProductDBIF {
 		return product;
 	}
 
+	/**
+	 * Creates product object from result set, depending on weather it is clothing, gun replica or equipment
+	 * @param rs the result set to create the object from
+	 * @return the product that was created from the result set
+	 * @throws SQLException
+	 */
 	private Product buildObject(ResultSet rs) throws SQLException {
 		Product product;
 		int id = rs.getInt("id");

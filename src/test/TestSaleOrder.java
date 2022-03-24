@@ -35,7 +35,7 @@ class TestSaleOrder {
 		saleOrder.addOrderLine(orderLine);
 		
 		assertEquals(new BigDecimal(productPrice * productQuantity).add(new BigDecimal(deliveryPrice)).byteValueExact(),
-				saleOrder.getAmount().byteValueExact());
+				saleOrder.getPrice().byteValueExact());
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ class TestSaleOrder {
 		}
 		
 		assertEquals(new BigDecimal(productPrice * productQuantity * orderLines).add(new BigDecimal(deliveryPrice)).byteValueExact(),
-				saleOrder.getAmount().byteValueExact());
+				saleOrder.getPrice().byteValueExact());
 	}
 	
 	@Test
@@ -80,13 +80,13 @@ class TestSaleOrder {
 		BigDecimal total = new BigDecimal(productPrice * productQuantity * orderLines).setScale(4, RoundingMode.CEILING);
 		
 		if(intTotal >= 1500) {
-			assertEquals(total.add(deliveryPrice).subtract(discount), saleOrder.getAmount());
+			assertEquals(total.add(deliveryPrice).subtract(discount), saleOrder.getPrice());
 		}
 		else if(intTotal >= 2500){
-			assertEquals(total.subtract(discount), saleOrder.getAmount());
+			assertEquals(total.subtract(discount), saleOrder.getPrice());
 		}
 		else{
-			assertEquals(total.add(deliveryPrice), saleOrder.getAmount());
+			assertEquals(total.add(deliveryPrice), saleOrder.getPrice());
 		}
 	}
 	
@@ -112,13 +112,13 @@ class TestSaleOrder {
 		BigDecimal total = new BigDecimal(productPrice * productQuantity * orderLines).setScale(4, RoundingMode.CEILING);
 		
 		if(intTotal >= 1500) {
-			assertEquals(total.add(deliveryPrice).subtract(discount), saleOrder.getAmount());
+			assertEquals(total.add(deliveryPrice).subtract(discount), saleOrder.getPrice());
 		}
 		else if(intTotal >= 2500){
-			assertEquals(total.subtract(discount), saleOrder.getAmount());
+			assertEquals(total.subtract(discount), saleOrder.getPrice());
 		}
 		else{
-			assertEquals(total.add(deliveryPrice), saleOrder.getAmount());
+			assertEquals(total.add(deliveryPrice), saleOrder.getPrice());
 		}
 	}
 	
@@ -144,13 +144,13 @@ class TestSaleOrder {
 		BigDecimal total = new BigDecimal(productPrice * productQuantity * orderLines).setScale(4, RoundingMode.CEILING);
 		
 		if(intTotal >= 1500) {
-			assertEquals(total.add(deliveryPrice).subtract(discount), saleOrder.getAmount());
+			assertEquals(total.add(deliveryPrice).subtract(discount), saleOrder.getPrice());
 		}
 		else if(intTotal >= 2500){
-			assertEquals(total.subtract(discount), saleOrder.getAmount());
+			assertEquals(total.subtract(discount), saleOrder.getPrice());
 		}
 		else{
-			assertEquals(total.add(deliveryPrice), saleOrder.getAmount());
+			assertEquals(total.add(deliveryPrice), saleOrder.getPrice());
 		}
 	}
 

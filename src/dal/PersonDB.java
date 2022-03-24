@@ -5,47 +5,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import exceptions.DatabaseAccessException;
 import model.Person;
 
 public class PersonDB implements PersonDBIF {
 	
-	@Override
-	public Person insert(Person c) {
-		// TODO Auto-generated method stub
-		return null;
+	private static final String SELECT_PERSON_STATEMENT = "SELECT * FROM Person WHERE phoneno = ?";
+	private PreparedStatement selectPersonStatement;
+	private static final String SELECT_CITY_STATEMENT = "SELECT City FROM Country WHERE country = ? and zipcode = ?";
+	private PreparedStatement selectCityStatement;
+	
+	/**
+	 * Constructor for PersonDB class
+	 * @throws DatabaseAccessException 
+	 */
+	public PersonDB() throws DatabaseAccessException {
+		try {
+			selectPersonStatement = DbConnection.getInstance().getConnection().prepareStatement(SELECT_PERSON_STATEMENT);
+			selectCityStatement = DbConnection.getInstance().getConnection().prepareStatement(SELECT_CITY_STATEMENT);
+		} catch (SQLException e) {
+			throw new DatabaseAccessException(DatabaseAccessException.CONNECTION_MESSAGE);
+		}
 	}
 
+	/**
+	 * Searches for a person in the database and returns it
+	 * @param phone the phone number of the person to search for
+	 * @return the person with the corresponding phone number
+	 */
 	@Override
-	public boolean delete(Person c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public Person findByPhone(String phone) {
 
-	@Override
-	public Person update(Person c) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Person getPersonByPhone(String phone) {
-		
 		Person person = null;
 
-		String sqlString = "SELECT * FROM Person WHERE phoneno = ?";
-		String sqlFindCity = "SELECT City FROM Country WHERE country = ? and zipcode = ?";
-		Connection connection = DbConnection.getInstance().getConnection();
-
 		try {
-			PreparedStatement st  = connection.prepareStatement(sqlString);
-			PreparedStatement stFindCity  = connection.prepareStatement(sqlFindCity);
-			st.setString(1, phone);
-			ResultSet rs = st.executeQuery();
+			selectPersonStatement.setString(1, phone);
+			ResultSet rs = selectPersonStatement.executeQuery();
 			if (rs.next()) {
-				stFindCity.setString(1, rs.getString("country"));
-				stFindCity.setString(2, rs.getString("zipcode"));
-				ResultSet rsCity = stFindCity.executeQuery();
+				selectCityStatement.setString(1, rs.getString("country"));
+				selectCityStatement.setString(2, rs.getString("zipcode"));
+				ResultSet rsCity = selectCityStatement.executeQuery();
 				if(rsCity.next()) {
 					person = buildObject(rs, rsCity);
 				}
@@ -56,6 +55,13 @@ public class PersonDB implements PersonDBIF {
 		return person;
 	}
 	
+	/**
+	 * Creates a Person object from a result set
+	 * @param rs the result set containing the data from the person table
+	 * @param rsCity the result set which contains the city
+	 * @return the person created from result sets
+	 * @throws SQLException
+	 */
 	private Person buildObject(ResultSet rs, ResultSet rsCity) throws SQLException {
 		return new Person(rs.getString("name"), rs.getString("address"),
 				rsCity.getString("city"), rs.getString("phoneno"),

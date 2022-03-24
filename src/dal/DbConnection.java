@@ -11,6 +11,9 @@ public class DbConnection {
 	private static DbConnection instance = new DbConnection();
 	private Connection conn;
 	
+	/**
+	 * Constructor for the DbConnection
+	 */
 	private DbConnection() {
 		try {
 			SQLServerDataSource ds = new SQLServerDataSource();
@@ -29,23 +32,24 @@ public class DbConnection {
 		}	
 	}
 	
+	/**
+	 * @return the instance of DbConnection
+	 */
 	public static DbConnection getInstance() {
 		return instance;		
 	}
 	
+	/**
+	 * @return the connection
+	 */
 	public Connection getConnection() {
 		return conn;
 	}
 	
-	public Connection getConnection(int isolationLevel) {
-		try {
-			conn.setTransactionIsolation(isolationLevel);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return conn;
-	}
-	
+	/**
+	 * Prints out the information of the connection
+	 * @param conn the connection to print out information about
+	 */
 	public void printSessionInfo(Connection conn) {
 		
 		PreparedStatement selectSessionInfo = null;
@@ -62,9 +66,11 @@ public class DbConnection {
 		}
 	}
 	
-
-	// requires prepared statement to be created with the additional argument
-	// PreparedStatement.RETURN_GENERATED_KEYS
+	/**
+	 * Executes insert and gets the generated key of it
+	 * @param ps the prepared statement to execute
+	 * @return the generated key
+	 */
 	public int executeSqlInsertWithIdentity(PreparedStatement ps) {
 		int res = -1;
 		try {
@@ -80,6 +86,9 @@ public class DbConnection {
 		return res;
 	}
 
+	/**
+	 * Sets auto commit to false and starts the transaction
+	 */
 	public void startTransaction() {
 		try {
 			conn.setAutoCommit(false);
@@ -88,6 +97,9 @@ public class DbConnection {
 		}
 	}
 
+	/**
+	 * Commits transaction and sets the auto commit to true
+	 */
 	public void commitTransaction() {
 		try {
 			try {
@@ -102,6 +114,9 @@ public class DbConnection {
 		}
 	}
 
+	/**
+	 * Rollbacks transaction and sets the auto commit to true
+	 */
 	public void rollbackTransaction() {
 		try {
 			try {
@@ -117,6 +132,10 @@ public class DbConnection {
 
 	}
 	
+	/**
+	 * Sets the isolation level of the transaction
+	 * @param level the level to set to
+	 */
 	public void setTransactionIsolation(int level) {
 		try {
 			conn.setTransactionIsolation(level);

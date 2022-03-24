@@ -41,16 +41,17 @@ class TestOrderDB {
 		int productId = 2;
 		String getLastQuery = "SELECT * FROM SaleOrder WHERE id=(SELECT max(id) FROM SaleOrder);";
 		
-		SaleOrder order = new SaleOrder(new PersonDB().getPersonByPhone(customerPhone));
-		order.addOrderLine(new SaleOrderLine(new ProductDB().getProductByID(productId), 1));
-		order.setDate(LocalDateTime.now());
-		order.setDeliveryDate(LocalDateTime.now());
-		order.setPaymentDate(LocalDateTime.now());
-		
-		order.setDeliveryStatus("finished");
+		SaleOrder order = null;
+		try {
+			order = new SaleOrder(new PersonDB().findByPhone(customerPhone));
+			order.addOrderLine(new SaleOrderLine(new ProductDB().getProductByID(productId), 1));
+			order.setDate(LocalDateTime.now());
+			order.setDeliveryDate(LocalDateTime.now());
+			order.setPaymentDate(LocalDateTime.now());
+			
+			order.setDeliveryStatus("finished");
 		
 		// act
-		try {
 			orderDB.insertOrder(order);
 		} catch (DatabaseAccessException e) {
 			e.printStackTrace();
@@ -69,7 +70,7 @@ class TestOrderDB {
 				assertEquals(order.getDeliveryStatus(), rs.getString("deliveryStatus"));
 				assertEquals(Timestamp.valueOf(order.getDeliveryDate()), rs.getTimestamp("deliveryDate"));
 				assertEquals(Timestamp.valueOf(order.getPaymentDate()), rs.getTimestamp("paymentDate"));
-				assertEquals(order.getAmount(), rs.getBigDecimal("amount"));
+				assertEquals(order.getPrice(), rs.getBigDecimal("amount"));
 				assertEquals(order.getCustomer().getPhoneno(), rs.getString("customerPhoneno"));
 			}
 		} catch (SQLException e1) {
