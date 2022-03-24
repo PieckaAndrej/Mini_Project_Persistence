@@ -1,5 +1,7 @@
 package controller;
 
+import java.math.BigDecimal;
+
 import dal.SaleOrderDB;
 import dal.SaleOrderDBIF;
 import exceptions.DatabaseAccessException;
@@ -65,5 +67,21 @@ public class SaleOrderController {
 		}
 		
 		return retVal;
+	}
+	
+	public BigDecimal getTotal() {
+		return currentOrder.getAmount();
+	}
+	
+	public SaleOrder getCurrentOrder() {
+		return currentOrder;
+	}
+	
+	public boolean isEmpty() {
+		return currentOrder.isEmpty();
+	}
+	
+	public void cancelOrder() {
+		currentOrder = null;
 	}
 }

@@ -91,4 +91,8 @@ public class SaleOrder {
 		this.id = id;
 	}
 	
+	public boolean isEmpty() {
+		return orderLines.isEmpty();
+	}
+	
 }
