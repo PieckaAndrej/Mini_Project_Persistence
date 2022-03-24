@@ -64,8 +64,8 @@ CREATE TABLE dbo.SaleOrder (
    id int PRIMARY KEY IDENTITY(1,1),  
    [date] DATETIME2(7) NOT NULL,  
    deliveryStatus VARCHAR(10),
-   deliveryDate DATETIME2(7) NOT NULL,
-   paymentDate DATETIME2(7) NOT NULL,
+   deliveryDate DATETIME2(7),
+   paymentDate DATETIME2(7),
    amount MONEY NOT NULL,
    customerPhoneno VARCHAR(10),
    CONSTRAINT CustomerOrderFK
