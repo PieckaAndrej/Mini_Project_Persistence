@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,10 +24,6 @@ class TestOrderDB {
 	
 	private SaleOrderDB orderDB;
 	
-	@BeforeAll
-	void databaseSetUp() {
-		
-	}
 	
 	@BeforeEach
 	void setUp() {
@@ -40,12 +37,18 @@ class TestOrderDB {
 	@Test
 	void testCreateOrder() {
 		// arrange
-		String customerPhone = "";
-		String productId = "";
+		String customerPhone = "1234567890";
+		int productId = 3;
 		String getLastQuery = "SELECT * FROM SaleOrder WHERE id=(SELECT max(id) FROM SaleOrder);";
 		
 		SaleOrder order = new SaleOrder(new PersonDB().getPersonByPhone(customerPhone));
 		order.addOrderLine(new SaleOrderLine(new ProductDB().getProductByID(productId), 1));
+		
+		order.setDate(LocalDateTime.now());
+		order.setDeliveryDate(LocalDateTime.now());
+		order.setPaymentDate(LocalDateTime.now());
+		
+		order.setDeliveryStatus("finished");
 		
 		// act
 		try {
