@@ -14,7 +14,7 @@ public class ProductDB implements ProductDBIF {
 	}
 	
 	@Override
-	public Product getProductByID(String id) {
+	public Product getProductByID(int id) {
 		Product product = null;
 		
 		String sqlString = "SELECT Product WHERE id = ?";
@@ -22,7 +22,7 @@ public class ProductDB implements ProductDBIF {
 
 		try {
 			PreparedStatement st = con.prepareStatement(sqlString);
-			st.setString(1, id);
+			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
 			
 			if(rs.next()) {
@@ -37,7 +37,7 @@ public class ProductDB implements ProductDBIF {
 	}
 
 	private Product buildObject(ResultSet rs) throws SQLException {
-		return new Product(rs.getString("id"), rs.getString("name"),
+		return new Product(rs.getInt("id"), rs.getString("name"),
 				rs.getBigDecimal("purchasePrice"), rs.getBigDecimal("salesPrice"),
 				rs.getString("countryOfOrigin"), rs.getInt("minStock"));
 	}

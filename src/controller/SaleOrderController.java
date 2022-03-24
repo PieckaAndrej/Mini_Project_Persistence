@@ -33,7 +33,7 @@ public class SaleOrderController {
 		return retVal;
 	}
 	
-	public boolean addProduct(String id, int amount) {
+	public boolean addProduct(int id, int amount) {
 		boolean retVal = true;
 		
 		Product product = productController.getProductById(id);

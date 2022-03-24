@@ -11,7 +11,7 @@ public class ProductController {
 		productDb = new ProductDB();
 	}
 	
-	public Product getProductById(String id) {
+	public Product getProductById(int id) {
 		return productDb.getProductByID(id);
 	}
 }

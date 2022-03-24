@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 
 public class Product {
 	
-	private String id;
+	private int id;
 	private String name;
 	private BigDecimal puchasePrice;
 	private BigDecimal salesPrice;
 	private String countryOfOrigin;
 	private int minStock;
 	
-	public Product(String id, String name, BigDecimal puchasePrice,
+	public Product(int id, String name, BigDecimal puchasePrice,
 			BigDecimal salesPrice, String countryOfOrigin, int minStock) {
 		this.id = id;
 		this.name = name;
@@ -21,11 +21,11 @@ public class Product {
 		this.minStock = minStock;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
