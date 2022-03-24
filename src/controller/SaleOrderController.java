@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import dal.SaleOrderDB;
 import dal.SaleOrderDBIF;
 import exceptions.DatabaseAccessException;
+import exceptions.NotEnoughInStockException;
 import model.Person;
 import model.Product;
 import model.SaleOrder;
@@ -37,20 +38,31 @@ public class SaleOrderController {
 		return retVal;
 	}
 	
-	public boolean addProduct(int id, int amount) {
-		boolean retVal = true;
+	public boolean addProduct(int id, int quantity) throws NotEnoughInStockException {
+		boolean retVal = false;
 		
 		Product product = productController.getProductById(id);
 		
-		if(product != null)
-		{
-			SaleOrderLine orderLine = new SaleOrderLine(product, amount);
+		if(product != null) {
+			if (currentOrder.isProductPresent(product)) {
+				quantity += currentOrder.getOrderLineByProduct(product).getQuantity();
+				if (product.getCurrentStock() < quantity) {
+					throw new NotEnoughInStockException(quantity, product.getCurrentStock());
+				}
+				else {
+					currentOrder.removeOrderLineByProduct(product);
+				}
+			}
+			else if (product.getCurrentStock() < quantity) {
+				throw new NotEnoughInStockException(quantity, product.getCurrentStock());
+			}
+			
+			
+			SaleOrderLine orderLine = new SaleOrderLine(product, quantity);
 			currentOrder.addOrderLine(orderLine);
+			retVal = true;
 		}
-		else
-		{
-			retVal = false;
-		}
+
 		
 		return retVal;
 	}

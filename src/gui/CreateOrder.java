@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.SaleOrderController;
 import exceptions.DatabaseAccessException;
+import exceptions.NotEnoughInStockException;
 import model.OrderLine;
 import model.SaleOrderLine;
 
@@ -508,12 +509,19 @@ public class CreateOrder extends JDialog {
 	 * @throws NotEnoughInStockException
 	 */
 	private void addProduct() {
+		try {
 			orderCtrl.addProduct(Integer.parseInt(textBarcode.getText()), (int)spinnerQuantity.getValue());
 			removeErrorMessage();
 			updateList();
 			lblTotalPrice.setText("Total: " + CurrencyHandler.convertToString(orderCtrl.getTotal()));
 			textBarcode.setText("");
 			spinnerQuantity.setValue(1);
+		} catch (NumberFormatException e) {
+			lblErrorButton.setText(e.getMessage());
+		} catch (NotEnoughInStockException e) {
+			lblErrorButton.setText(e.getMessage());
+		}
+		
 			
 	}
 	

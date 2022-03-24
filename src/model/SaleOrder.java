@@ -132,6 +132,59 @@ public class SaleOrder {
 		
 		return new BigDecimal(retVal).setScale(4, RoundingMode.CEILING);
 	}
+	
+	public boolean isProductPresent(Product product) {
+		boolean found = false;
+		int index = 0;
+		
+		while (index < orderLines.size() && !found) {
+			if (((SaleOrderLine)orderLines.get(index)).getProduct().getId() == product.getId()) {
+				found = true;
+			}
+			else {
+				index++;
+			}
+		}
+		
+		return found;
+	}
+	
+	public OrderLine getOrderLineByProduct(Product product) {
+		boolean found = false;
+		int index = 0;
+		OrderLine retVal = null;
+		
+		while (index < orderLines.size() && !found) {
+			if (((SaleOrderLine)orderLines.get(index)).getProduct().getId() == product.getId()) {
+				retVal = orderLines.get(index);
+				found = true;
+			}
+			else {
+				index++;
+			}
+		}
+		
+		return retVal;
+	}
+	
+	public int removeOrderLineByProduct(Product product) {
+		boolean found = false;
+		int index = 0;
+		int retVal = 0;
+		
+		while (index < orderLines.size() && !found) {
+			if (((SaleOrderLine)orderLines.get(index)).getProduct().getId() == product.getId()) {
+				retVal = orderLines.get(index).getQuantity();
+				orderLines.remove(index);
+				found = true;
+			}
+			else {
+				index++;
+			}
+		}
+		
+		return retVal;
+	}
 
 	/**
 	 * @return customer
