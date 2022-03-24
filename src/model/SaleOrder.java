@@ -29,38 +29,65 @@ public class SaleOrder {
 		return orderLines.add(orderLine);
 	}
 	
+	/**
+	 * @return date
+	 */
 	public LocalDateTime getDate() {
 		return date;
 	}
 
+	/**
+	 * @param date
+	 */
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 	
+	/**
+	 * @return delivery date
+	 */
 	public LocalDateTime getDeliveryDate() {
 		return deliveryDate;
 	}
 
+	/**
+	 * @param deliveryDate
+	 */
 	public void setDeliveryDate(LocalDateTime deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 
+	/**
+	 * @return delivery status
+	 */
 	public String getDeliveryStatus() {
 		return deliveryStatus;
 	}
 
+	/**
+	 * @param deliveryStatus
+	 */
 	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
 	}
 
+	/**
+	 * @return array list of order lines
+	 */
 	public List<OrderLine> getOrderLines() {
 		return new ArrayList<>(orderLines);
 	}
 	
+	/**
+	 * @return paymentDate
+	 */
 	public LocalDateTime getPaymentDate() {
 		return paymentDate;
 	}
 
+	/**
+	 * @param paymentDate
+	 */
 	public void setPaymentDate(LocalDateTime paymentDate) {
 		this.paymentDate = paymentDate;
 	}
@@ -68,6 +95,9 @@ public class SaleOrder {
 	/**
 	 * Get sum of all orderlines
 	 * @return Get amount from all orderlines
+	 */
+	/**
+	 * @return amount to pay
 	 */
 	public BigDecimal getAmount() {
 		double retVal = 0;
@@ -91,18 +121,30 @@ public class SaleOrder {
 		return new BigDecimal(retVal);
 	}
 
+	/**
+	 * @return customer
+	 */
 	public Person getCustomer() {
 		return customer;
 	}
 
+	/**
+	 * @param customer
+	 */
 	public void setCustomer(Person customer) {
 		this.customer = customer;
 	}
 	
+	/**
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	
+	/**
+	 * @return boolean if saleorder is empty
+	 */
 	public boolean isEmpty() {
 		return orderLines.isEmpty();
 	}
