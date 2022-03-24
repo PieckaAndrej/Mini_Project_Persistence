@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,7 +102,7 @@ public class CreateOrder extends JDialog {
 	 */
 	private void initGui() {
 		setModal(true);
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 700, 500);
 		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -116,6 +117,7 @@ public class CreateOrder extends JDialog {
 				phoneNumberPanel.add(verticalBox);
 				{
 					JLabel lblEnterPhone = new JLabel("Enter phone number");
+					lblEnterPhone.setFont(ColorScheme.FONT);
 					lblEnterPhone.setAlignmentX(0.1f);
 					verticalBox.add(lblEnterPhone);
 				}
@@ -125,6 +127,7 @@ public class CreateOrder extends JDialog {
 				}
 				{
 					phoneField = new JTextField();
+					phoneField.setFont(ColorScheme.FONT);
 					phoneField.setAlignmentX(0.0f);
 					verticalBox.add(phoneField);
 					phoneField.setColumns(10);
@@ -141,6 +144,7 @@ public class CreateOrder extends JDialog {
 				selectCustomerMethodPanel.add(verticalBox);
 				{
 					JButton btnNewButton = new JButton("Existing customer ");
+					btnNewButton.setIcon(Images.getButtonIcon(btnNewButton, ColorScheme.BACKGROUND));
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							selectExistingCustomer();
@@ -148,6 +152,7 @@ public class CreateOrder extends JDialog {
 					});
 					{
 						JLabel lblFindBy = new JLabel("Find customer");
+						lblFindBy.setFont(ColorScheme.FONT);
 						lblFindBy.setAlignmentX(0.1f);
 						verticalBox.add(lblFindBy);
 					}
@@ -178,10 +183,12 @@ public class CreateOrder extends JDialog {
 					addProductPanel.setLayout(fl_addProductPanel);
 					{
 						JLabel lblEnterBarcode = new JLabel("Enter product barcode");
+						lblEnterBarcode.setFont(ColorScheme.FONT);
 						addProductPanel.add(lblEnterBarcode);
 					}
 					{
 						textBarcode = new JTextField();
+						textBarcode.setFont(ColorScheme.FONT);
 						textBarcode.setColumns(10);
 						addProductPanel.add(textBarcode);
 					}
@@ -191,6 +198,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						JLabel lblQuantity = new JLabel("Quantity");
+						lblQuantity.setFont(ColorScheme.FONT);
 						addProductPanel.add(lblQuantity);
 					}
 					{
@@ -205,6 +213,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						JButton btnAddProduct = new JButton("Add Product");
+						btnAddProduct.setIcon(Images.getButtonIcon(btnAddProduct, ColorScheme.BACKGROUND));
 						btnAddProduct.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								addProduct();
@@ -241,6 +250,7 @@ public class CreateOrder extends JDialog {
 				buttonPanel.add(leftButtonPanel, BorderLayout.WEST);
 				{
 					btnBack = new JButton("Back");
+					btnBack.setIcon(Images.getButtonIcon(btnBack, ColorScheme.TAB));
 					btnBack.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							back();
@@ -258,12 +268,14 @@ public class CreateOrder extends JDialog {
 				buttonPanel.add(rightButtonPanel, BorderLayout.EAST);
 				{
 					lblErrorButton = new JLabel("");
+					lblErrorButton.setFont(ColorScheme.FONT);
 					rightButtonPanel.add(lblErrorButton);
 					lblErrorButton.setHorizontalAlignment(SwingConstants.RIGHT);
 					lblErrorButton.setForeground(ColorScheme.BACKGROUND);
 				}
 				{
 					btnCreate = new JButton("Create");
+					btnCreate.setIcon(Images.getButtonIcon(btnBack, ColorScheme.TAB));
 					btnCreate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 
@@ -273,13 +285,16 @@ public class CreateOrder extends JDialog {
 					btnCreate.setVisible(false);
 				}
 				btnFinishOrder = new JButton("Finish Order");
+				btnFinishOrder.setIcon(Images.getButtonIcon(btnFinishOrder, ColorScheme.TAB));
 				rightButtonPanel.add(btnFinishOrder);
 				btnFinishOrder.setHorizontalAlignment(SwingConstants.RIGHT);
 				btnConfirm = new JButton("Confirm");
+				btnConfirm.setIcon(Images.getButtonIcon(btnConfirm, ColorScheme.TAB));
 				rightButtonPanel.add(btnConfirm);
 				btnConfirm.setHorizontalAlignment(SwingConstants.RIGHT);
 				{
 					JButton btnCancel = new JButton("Cancel");
+					btnCancel.setIcon(Images.getButtonIcon(btnCancel, ColorScheme.TAB));
 					rightButtonPanel.add(btnCancel);
 					btnCancel.setHorizontalAlignment(SwingConstants.RIGHT);
 					btnCancel.addActionListener(new ActionListener() {
@@ -306,6 +321,7 @@ public class CreateOrder extends JDialog {
 		}
 		{
 			lblTotalPrice = new JLabel("Total: 0");
+			lblTotalPrice.setFont(ColorScheme.FONT);
 			lblTotalPrice.setHorizontalAlignment(SwingConstants.RIGHT);
 			selectProductsPanel.add(lblTotalPrice, BorderLayout.SOUTH);
 		}
@@ -320,6 +336,7 @@ public class CreateOrder extends JDialog {
 				newCustomerPanel.add(verticalBox);
 				{
 					JLabel lblNewCustomer = new JLabel("New Customer");
+					lblNewCustomer.setFont(ColorScheme.FONT);
 					lblNewCustomer.setAlignmentX(0.1f);
 					verticalBox.add(lblNewCustomer);
 				}
@@ -339,6 +356,7 @@ public class CreateOrder extends JDialog {
 					newCustomerTextPanel.setLayout(gbl_newCustomerTextPanel);
 					{
 						JLabel lblCustomerName = new JLabel("Name");
+						lblCustomerName.setFont(ColorScheme.FONT);
 						GridBagConstraints gbc_lblCustomerName = new GridBagConstraints();
 						gbc_lblCustomerName.anchor = GridBagConstraints.EAST;
 						gbc_lblCustomerName.insets = new Insets(0, 0, 5, 5);
@@ -348,6 +366,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						nameField = new JTextField();
+						nameField.setFont(ColorScheme.FONT);
 						nameField.setColumns(10);
 						nameField.setAlignmentX(1.0f);
 						GridBagConstraints gbc_nameField = new GridBagConstraints();
@@ -359,6 +378,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						JLabel lblCustomerPhoneNumber = new JLabel("Phone number");
+						lblCustomerPhoneNumber.setFont(ColorScheme.FONT);
 						lblCustomerPhoneNumber.setAlignmentX(1.0f);
 						GridBagConstraints gbc_lblCustomerPhoneNumber = new GridBagConstraints();
 						gbc_lblCustomerPhoneNumber.anchor = GridBagConstraints.EAST;
@@ -369,6 +389,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						phoneNumberField = new JTextField();
+						phoneNumberField.setFont(ColorScheme.FONT);
 						phoneNumberField.setColumns(10);
 						GridBagConstraints gbc_phoneNumberField = new GridBagConstraints();
 						gbc_phoneNumberField.insets = new Insets(0, 0, 5, 0);
@@ -379,6 +400,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						JLabel lblCustomerAddress = new JLabel("Address");
+						lblCustomerAddress.setFont(ColorScheme.FONT);
 						lblCustomerAddress.setAlignmentX(1.0f);
 						GridBagConstraints gbc_lblCustomerAddress = new GridBagConstraints();
 						gbc_lblCustomerAddress.anchor = GridBagConstraints.EAST;
@@ -389,6 +411,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						addressField = new JTextField();
+						addressField.setFont(ColorScheme.FONT);
 						addressField.setColumns(10);
 						GridBagConstraints gbc_addressField = new GridBagConstraints();
 						gbc_addressField.insets = new Insets(0, 0, 5, 0);
@@ -399,6 +422,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						JLabel lblCustomerCity = new JLabel("City");
+						lblCustomerCity.setFont(ColorScheme.FONT);
 						lblCustomerCity.setAlignmentX(1.0f);
 						GridBagConstraints gbc_lblCustomerCity = new GridBagConstraints();
 						gbc_lblCustomerCity.anchor = GridBagConstraints.EAST;
@@ -409,6 +433,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						cityField = new JTextField();
+						cityField.setFont(ColorScheme.FONT);
 						cityField.setColumns(10);
 						GridBagConstraints gbc_cityField = new GridBagConstraints();
 						gbc_cityField.insets = new Insets(0, 0, 5, 0);
@@ -419,6 +444,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						JLabel lblCustomerZipCode = new JLabel("Zip code");
+						lblCustomerZipCode.setFont(ColorScheme.FONT);
 						lblCustomerZipCode.setAlignmentX(1.0f);
 						GridBagConstraints gbc_lblCustomerZipCode = new GridBagConstraints();
 						gbc_lblCustomerZipCode.anchor = GridBagConstraints.EAST;
@@ -429,6 +455,7 @@ public class CreateOrder extends JDialog {
 					}
 					{
 						zipCodeField = new JTextField();
+						zipCodeField.setFont(ColorScheme.FONT);
 						zipCodeField.setColumns(10);
 						GridBagConstraints gbc_zipCodeField = new GridBagConstraints();
 						gbc_zipCodeField.fill = GridBagConstraints.HORIZONTAL;
@@ -484,7 +511,7 @@ public class CreateOrder extends JDialog {
 			orderCtrl.addProduct(Integer.parseInt(textBarcode.getText()), (int)spinnerQuantity.getValue());
 			removeErrorMessage();
 			updateList();
-			lblTotalPrice.setText("Total: " + CurrencyHandler.convertToString(orderCtrl.getTotal().doubleValue()));
+			lblTotalPrice.setText("Total: " + CurrencyHandler.convertToString(orderCtrl.getTotal()));
 			textBarcode.setText("");
 			spinnerQuantity.setValue(1);
 			
@@ -509,7 +536,7 @@ public class CreateOrder extends JDialog {
 		
 		for (OrderLine element : lists) {
 			myTableModel.addRow(new Object[] {((SaleOrderLine) element).getProduct().getName(),
-					element.getQuantity(), CurrencyHandler.convertToString(element.getAmount().doubleValue())});
+					element.getQuantity(), CurrencyHandler.convertToString(element.getAmount())});
 		}
 		
 		table.setModel(myTableModel);

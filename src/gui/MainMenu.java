@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,8 +27,6 @@ public class MainMenu extends JFrame {
 	
 	private JPanel contentPane;
 	private JPanel ordersPanel;
-	private JPanel leasesPanel;
-	private JPanel statisticsPanel;
 	private JLabel lblNewLabel;
 
 	/**
@@ -39,6 +37,7 @@ public class MainMenu extends JFrame {
 			
 			public void run() {
 				try {
+					System.setProperty("sun.java2d.uiScale", "1.0");
 					MainMenu frame = new MainMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -82,11 +81,15 @@ public class MainMenu extends JFrame {
 		Box verticalBox_1 = Box.createVerticalBox();
 		ordersPanel.add(verticalBox_1);
 		
-		JLabel lblOrders = new JLabel("Orders     ");
+		JLabel lblOrders = new JLabel("Orders");
+		lblOrders.setFont(ColorScheme.FONT);
 		lblOrders.setAlignmentX(0.1f);
 		verticalBox_1.add(lblOrders);
 		
 		JButton btnNewButton_2 = new JButton("Create order");
+		
+		btnNewButton_2.setIcon(Images.getButtonIcon(btnNewButton_2, ColorScheme.BACKGROUND));
+		btnNewButton_2.setFont(ColorScheme.FONT);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				createOrder();
@@ -97,40 +100,6 @@ public class MainMenu extends JFrame {
 		verticalBox_1.add(verticalStrut_1);
 		verticalBox_1.add(btnNewButton_2);
 		
-		
-		Box verticalBox_2 = Box.createVerticalBox();
-		leasesPanel.add(verticalBox_2);
-		
-		JLabel lblNewLabel_2 = new JLabel("Create");
-		lblNewLabel_2.setAlignmentX(0.1f);
-		verticalBox_2.add(lblNewLabel_2);
-		
-		JButton btnNewButton_3 = new JButton("Create Lease");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		Component verticalStrut_2 = Box.createVerticalStrut(5);
-		verticalBox_2.add(verticalStrut_2);
-		verticalBox_2.add(btnNewButton_3);
-		
-		Box verticalBox_2_1 = Box.createVerticalBox();
-		leasesPanel.add(verticalBox_2_1);
-		
-		JLabel lblNewLabel_2_1 = new JLabel("Return");
-		lblNewLabel_2_1.setAlignmentX(0.1f);
-		verticalBox_2_1.add(lblNewLabel_2_1);
-		
-		Component verticalStrut_2_1 = Box.createVerticalStrut(5);
-		verticalBox_2_1.add(verticalStrut_2_1);
-		
-		JButton btnNewButton_3_1 = new JButton("Return Lease");
-		btnNewButton_3_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		verticalBox_2_1.add(btnNewButton_3_1);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setContinuousLayout(true);
@@ -143,23 +112,6 @@ public class MainMenu extends JFrame {
 		
 		splitPane.setRightComponent(interactivePanel);
 		
-		
-		Box verticalBox_1_1 = Box.createVerticalBox();
-		statisticsPanel.add(verticalBox_1_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Statistics");
-		lblNewLabel_1_1.setAlignmentX(0.1f);
-		verticalBox_1_1.add(lblNewLabel_1_1);
-		
-		Component verticalStrut_1_1 = Box.createVerticalStrut(5);
-		verticalBox_1_1.add(verticalStrut_1_1);
-		
-		JButton btnNewButton_2_1 = new JButton("Generate statistics");
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		verticalBox_1_1.add(btnNewButton_2_1);
 		
 		Box verticalBox_3 = Box.createVerticalBox();
 		interactivePanel.add(verticalBox_3);
@@ -178,6 +130,9 @@ public class MainMenu extends JFrame {
 		menuPanel.add(verticalBox);
 		
 		JButton btnOrders = new JButton("Orders");
+		btnOrders.setIcon(Images.getButtonIcon(btnOrders, ColorScheme.TAB));
+		btnOrders.setFont(ColorScheme.FONT);
+		btnOrders.setFocusPainted(false);
 		btnOrders.setAlignmentX(0.5f);
 		btnOrders.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -205,17 +160,15 @@ public class MainMenu extends JFrame {
 		lblNewLabel.setVisible(false);
 		
 		ordersPanel.setVisible(false);
-		leasesPanel.setVisible(false);
-		statisticsPanel.setVisible(false);
 	}
 	
 	/**
 	 * Handle order creation
 	 */
 	private void createOrder() {
-		CreateOrder login;
 		try {
-			login = new CreateOrder();
+			CreateOrder login = new CreateOrder();
+			login.setVisible(true);
 		} catch (DatabaseAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

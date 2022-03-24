@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 
 public class ColorScheme {
 	/**
@@ -27,4 +28,6 @@ public class ColorScheme {
 	 * Header color
 	 */
 	public static final Color HEADER = Color.decode("#303c6c");
+	
+	public static final Font FONT = new Font("SansSerif", Font.BOLD, 20);
 }

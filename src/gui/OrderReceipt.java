@@ -82,7 +82,7 @@ public class OrderReceipt extends JDialog {
 							getItems();
 						}
 						{
-							JLabel lblNewLabel_2 = new JLabel("Total: " + CurrencyHandler.convertToString(orderCtrl.getTotal().doubleValue()));
+							JLabel lblNewLabel_2 = new JLabel("Total: " + CurrencyHandler.convertToString(orderCtrl.getTotal()));
 							verticalBox.add(lblNewLabel_2);
 						}
 					}
