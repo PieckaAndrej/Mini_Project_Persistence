@@ -18,7 +18,7 @@ class TestSaleOrder {
 	
 	@BeforeEach
 	void setUp() {
-		Person person = new Person(null, null, null, null, null, null);
+		Person person = new Person(null, null, null, null, null, null, null);
 		saleOrder = new SaleOrder(person);
 	}
 

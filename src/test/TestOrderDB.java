@@ -71,7 +71,7 @@ class TestOrderDB {
 				assertEquals(Timestamp.valueOf(order.getDeliveryDate()), rs.getTimestamp(3));
 				assertEquals(Timestamp.valueOf(order.getPaymentDate()), rs.getTimestamp(4));
 				assertEquals(order.getAmount(), rs.getBigDecimal(5));
-				assertEquals(order.getCustomer().getPhone(), rs.getString(6));
+				assertEquals(order.getCustomer().getPhoneno(), rs.getString(6));
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
