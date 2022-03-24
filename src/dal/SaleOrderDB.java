@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 
 import exceptions.DatabaseAccessException;
+import model.OrderLine;
 import model.SaleOrder;
 
 public class SaleOrderDB implements SaleOrderDBIF {

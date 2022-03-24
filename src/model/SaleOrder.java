@@ -80,6 +80,13 @@ public class SaleOrder {
 	}
 	
 	/**
+	 * @param orderLines the orderLines to set
+	 */
+	public void setOrderLines(List<OrderLine> orderLines) {
+		this.orderLines = orderLines;
+	}
+
+	/**
 	 * @return paymentDate
 	 */
 	public LocalDateTime getPaymentDate() {
@@ -200,6 +207,13 @@ public class SaleOrder {
 		this.customer = customer;
 	}
 	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
 	/**
 	 * @param id
 	 */

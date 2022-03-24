@@ -3,26 +3,31 @@ package controller;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import dal.OrderLineDB;
+import dal.OrderLineDBIF;
 import dal.SaleOrderDB;
 import dal.SaleOrderDBIF;
 import exceptions.DatabaseAccessException;
 import exceptions.NotEnoughInStockException;
+import model.OrderLine;
 import model.Person;
 import model.Product;
 import model.SaleOrder;
 import model.SaleOrderLine;
 
 public class SaleOrderController {
-	private SaleOrderDBIF saleOrderDatabase;
+	private SaleOrderDBIF saleOrderDb;
+	private OrderLineDBIF orderLineDb;
 	private PersonController personController;
 	private SaleOrder currentOrder;
 	private ProductController productController;
 	
 	public SaleOrderController() throws DatabaseAccessException {
 		
-		productController = new ProductController();
-		saleOrderDatabase = new SaleOrderDB();
+		saleOrderDb = new SaleOrderDB();
+		orderLineDb = new OrderLineDB();
 		personController = new PersonController();
+		productController = new ProductController();
 	}
 	
 	public boolean createOrder(String phone) {
@@ -74,7 +79,11 @@ public class SaleOrderController {
 			currentOrder.setPaymentDate(LocalDateTime.now());
 			currentOrder.setDeliveryDate(LocalDateTime.now());
 			currentOrder.setDate(LocalDateTime.now());
-			saleOrderDatabase.insertOrder(currentOrder);
+			saleOrderDb.insertOrder(currentOrder);
+			
+			for(OrderLine element:currentOrder.getOrderLines()) {
+				orderLineDb.insertOrderLine(element, currentOrder.getId());
+			}
 			
 			currentOrder = null;
 			retVal = true;
