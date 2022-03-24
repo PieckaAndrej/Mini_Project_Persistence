@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 public class GunReplica extends Product {
 
-	private String calibre;
+	private double calibre;
 	private String material;
 	
 	public GunReplica(int id, String name, BigDecimal puchasePrice, BigDecimal salesPrice, String countryOfOrigin,
-			int minStock,  int currentStock, String supplierPhoneno, String calible, String material) {
+			int minStock,  int currentStock, String supplierPhoneno, double calible, String material) {
 		super(id, name, puchasePrice, salesPrice, countryOfOrigin, minStock, currentStock, supplierPhoneno);
 		this.calibre = calible;
 		this.material = material;
@@ -17,14 +17,14 @@ public class GunReplica extends Product {
 	/**
 	 * @return the calibre
 	 */
-	public String getCalibre() {
+	public double getCalibre() {
 		return calibre;
 	}
 
 	/**
 	 * @param calibre the calibre to set
 	 */
-	public void setCalibre(String calibre) {
+	public void setCalibre(double calibre) {
 		this.calibre = calibre;
 	}
 
