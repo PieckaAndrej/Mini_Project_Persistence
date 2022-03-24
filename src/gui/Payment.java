@@ -42,6 +42,7 @@ public class Payment extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JLabel lblNewLabel = new JLabel("Was payment of " + orderctrl.getCurrentOrder().getAmount() + " successful?");
+			lblNewLabel.setFont(ColorScheme.FONT);
 			contentPanel.add(lblNewLabel);
 		}
 		{
@@ -50,6 +51,7 @@ public class Payment extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Yes");
+				okButton.setIcon(Images.getButtonIcon(okButton, ColorScheme.BACKGROUND));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						yes();
@@ -61,6 +63,7 @@ public class Payment extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("No");
+				cancelButton.setIcon(Images.getButtonIcon(cancelButton, ColorScheme.BACKGROUND));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						no();

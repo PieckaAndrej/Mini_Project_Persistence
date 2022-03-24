@@ -50,7 +50,7 @@ public class OrderReceipt extends JDialog {
 	private void initGui() {
 		setModal(true);
 		setTitle("Order for " + orderCtrl.getCurrentOrder().getCustomer().getName());
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 550, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -61,6 +61,7 @@ public class OrderReceipt extends JDialog {
 			panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 			{
 				JLabel lblNewLabel = new JLabel("Receipt");
+				lblNewLabel.setFont(ColorScheme.FONT);
 				panel.add(lblNewLabel);
 			}
 		}
@@ -70,6 +71,7 @@ public class OrderReceipt extends JDialog {
 			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			{
 				lblNewLabel_3 = new JLabel("Sending the invoice...");
+				lblNewLabel_3.setFont(ColorScheme.FONT);
 				lblNewLabel_3.setVerticalAlignment(SwingConstants.BOTTOM);
 				panel.add(lblNewLabel_3);
 				{
@@ -83,6 +85,7 @@ public class OrderReceipt extends JDialog {
 						}
 						{
 							JLabel lblNewLabel_2 = new JLabel("Total: " + CurrencyHandler.convertToString(orderCtrl.getTotal()));
+							lblNewLabel_2.setFont(ColorScheme.FONT);
 							verticalBox.add(lblNewLabel_2);
 						}
 					}
@@ -95,6 +98,7 @@ public class OrderReceipt extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton finishOrderButton = new JButton("Send invoice");
+				finishOrderButton.setIcon(Images.getButtonIcon(finishOrderButton, ColorScheme.BACKGROUND));
 				finishOrderButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						finishInvoice();
@@ -103,6 +107,7 @@ public class OrderReceipt extends JDialog {
 				buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 				{
 					JButton btnNewButton = new JButton("Pay here");
+					btnNewButton.setIcon(Images.getButtonIcon(btnNewButton, ColorScheme.BACKGROUND));
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							finishHere();
@@ -121,6 +126,7 @@ public class OrderReceipt extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setIcon(Images.getButtonIcon(cancelButton, ColorScheme.BACKGROUND));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						cancel();
@@ -143,6 +149,7 @@ public class OrderReceipt extends JDialog {
 		for(int i  = 0; i < orderCtrl.getCurrentOrder().getOrderLines().size(); i++) {
 			
 			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setFont(ColorScheme.FONT);
 			verticalBox.add(lblNewLabel);
 			
 			StringBuilder returnString = new StringBuilder();

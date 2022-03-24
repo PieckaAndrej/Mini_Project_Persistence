@@ -102,7 +102,7 @@ public class CreateOrder extends JDialog {
 	 */
 	private void initGui() {
 		setModal(true);
-		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 800, 500);
 		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
