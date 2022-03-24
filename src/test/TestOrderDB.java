@@ -38,7 +38,7 @@ class TestOrderDB {
 	void testCreateOrder() {
 		// arrange
 		String customerPhone = "1234567890";
-		int productId = 3;
+		int productId = 1;
 		String getLastQuery = "SELECT * FROM SaleOrder WHERE id=(SELECT max(id) FROM SaleOrder);";
 		
 		SaleOrder order = new SaleOrder(new PersonDB().getPersonByPhone(customerPhone));

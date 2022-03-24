@@ -8,9 +8,37 @@ public class GunReplica extends Product {
 	private String material;
 	
 	public GunReplica(int id, String name, BigDecimal puchasePrice, BigDecimal salesPrice, String countryOfOrigin,
-			int minStock, String calible, String material) {
-		super(id, name, puchasePrice, salesPrice, countryOfOrigin, minStock);
+			int minStock,  int currentStock, String supplierPhoneno, String calible, String material) {
+		super(id, name, puchasePrice, salesPrice, countryOfOrigin, minStock, currentStock, supplierPhoneno);
 		this.calibre = calible;
+		this.material = material;
+	}
+
+	/**
+	 * @return the calibre
+	 */
+	public String getCalibre() {
+		return calibre;
+	}
+
+	/**
+	 * @param calibre the calibre to set
+	 */
+	public void setCalibre(String calibre) {
+		this.calibre = calibre;
+	}
+
+	/**
+	 * @return the material
+	 */
+	public String getMaterial() {
+		return material;
+	}
+
+	/**
+	 * @param material the material to set
+	 */
+	public void setMaterial(String material) {
 		this.material = material;
 	}
 

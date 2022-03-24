@@ -81,7 +81,6 @@ CREATE TABLE dbo.Product (
 	[name] VARCHAR(25) NOT NULL,
 	purchasePrice MONEY NOT NULL,
 	salesPrice MONEY NOT NULL,
-	rentPrice MONEY NOT NULL,
 	countryOfOrigin VARCHAR(20) NOT NULL,
 	minStock int NOT NULL,
 	currentStock int NOT NULL,
@@ -94,9 +93,9 @@ CREATE TABLE dbo.Product (
 GO
 
 CREATE TABLE dbo.[Copy] (
-	copyId int PRIMARY KEY IDENTITY(1,1), 
-	isRentable bit,
+	copyId int PRIMARY KEY IDENTITY(1,1),
 	rentDate datetime NOT NULL,
+	rentPrice MONEY NOT NULL,
 	productId int,
 	CONSTRAINT ProductCopyFK
 		FOREIGN KEY (productId) REFERENCES Product(id)
