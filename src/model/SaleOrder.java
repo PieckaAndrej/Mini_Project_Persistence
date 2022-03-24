@@ -75,13 +75,16 @@ public class SaleOrder {
 		for (OrderLine element : orderLines) {
 			retVal += element.getAmount().doubleValue();
 		}
-		
-		if(retVal >= 2500)
-		{
+		if(retVal >= 1500) {
+			//pays for delivery but has discount
+			retVal = retVal - 100 + 45;
+		}
+		else if(retVal >= 2500){
+			// no delivery payment and has a discount
 			retVal = retVal - 100;
 		}
-		else
-		{
+		else{
+			//doesn't have a discount and pays for delivery
 			retVal = retVal + 45;
 		}
 		
