@@ -9,10 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import dal.DbConnection;
 
-public class DatabaseConnectionTest {
+public class TestDatabaseConnection {
 
-	DbConnection db = null;
-	Connection con = null;
+	Connection con;
 
 	@BeforeEach
 	public void setUp() {
