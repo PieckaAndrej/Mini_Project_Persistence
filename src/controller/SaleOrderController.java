@@ -18,6 +18,7 @@ public class SaleOrderController {
 	
 	public SaleOrderController() throws DatabaseAccessException {
 		
+		productController = new ProductController();
 		saleOrderDatabase = new SaleOrderDB();
 		personController = new PersonController();
 	}

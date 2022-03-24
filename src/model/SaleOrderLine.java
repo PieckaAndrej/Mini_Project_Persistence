@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Component;
 import java.math.BigDecimal;
 
 public class SaleOrderLine extends OrderLine {
@@ -13,6 +14,10 @@ public class SaleOrderLine extends OrderLine {
 	@Override
 	public BigDecimal getAmount() {
 		return product.getSalesPrice().multiply(new BigDecimal(super.getQuantity()));
+	}
+	
+	public Product getProduct() {
+		return product;
 	}
 
 }
