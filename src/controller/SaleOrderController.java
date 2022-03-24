@@ -1,6 +1,7 @@
 package controller;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import dal.SaleOrderDB;
 import dal.SaleOrderDBIF;
@@ -58,6 +59,9 @@ public class SaleOrderController {
 		boolean retVal = false;
 		
 		try {
+			currentOrder.setPaymentDate(LocalDateTime.now());
+			currentOrder.setDeliveryDate(LocalDateTime.now());
+			currentOrder.setDate(LocalDateTime.now());
 			saleOrderDatabase.insertOrder(currentOrder);
 			
 			currentOrder = null;

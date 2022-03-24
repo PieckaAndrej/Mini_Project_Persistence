@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -169,7 +170,7 @@ public class OrderReceipt extends JDialog {
 			
 			lblNewLabel.setText(returnString.toString());
 		}
-		if(orderCtrl.getPrice() >= 1500) {
+		if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(1500)) == 1 && orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2500)) == -1) {
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setFont(ColorScheme.FONT);
 			verticalBox.add(lblNewLabel);
@@ -183,14 +184,28 @@ public class OrderReceipt extends JDialog {
 			
 			StringBuilder returnString1 = new StringBuilder();
 			returnString1.append("Discount: -100");
+			
+			lblNewLabel.setText(returnString.toString());
 		}
-		else if(orderCtrl.getPrice() >= 2500) {
+		else if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2500)) == 1) {
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setFont(ColorScheme.FONT);
 			verticalBox.add(lblNewLabel);
 			
 			StringBuilder returnString = new StringBuilder();
 			returnString.append("Discount: -100");
+			
+			lblNewLabel.setText(returnString.toString());
+		}
+		else {
+			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setFont(ColorScheme.FONT);
+			verticalBox.add(lblNewLabel);
+			
+			StringBuilder returnString = new StringBuilder();
+			returnString.append("Delivery price: 45");
+			
+			lblNewLabel.setText(returnString.toString());
 		}
 		
 		
