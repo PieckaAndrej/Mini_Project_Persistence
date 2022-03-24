@@ -27,7 +27,7 @@ class TestSaleOrder {
 		int productPrice = 1;
 		int productQuantity = 3;
 		
-		Product product = new Product(0, null, null, new BigDecimal(productPrice), null, 0);
+		Product product = new Product(0, null, null, new BigDecimal(productPrice), null, 0, 0, null);
 		SaleOrderLine orderLine = new SaleOrderLine(product, productQuantity);
 		
 		saleOrder.addOrderLine(orderLine);
@@ -41,7 +41,7 @@ class TestSaleOrder {
 		int productQuantity = 3;
 		int orderLines = 2;
 		
-		Product product = new Product(0, null, null, new BigDecimal(productPrice), null, 0);
+		Product product = new Product(0, null, null, new BigDecimal(productPrice), null, 0, 0, null);
 		
 		
 		SaleOrderLine orderLine = new SaleOrderLine(product, productQuantity);

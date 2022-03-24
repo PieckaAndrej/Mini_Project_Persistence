@@ -10,15 +10,19 @@ public class Product {
 	private BigDecimal salesPrice;
 	private String countryOfOrigin;
 	private int minStock;
+	private int currentStock;
+	private String supplierPhoneno;
 	
 	public Product(int id, String name, BigDecimal puchasePrice,
-			BigDecimal salesPrice, String countryOfOrigin, int minStock) {
+			BigDecimal salesPrice, String countryOfOrigin, int minStock, int currentStock, String supplierPhoneno) {
 		this.id = id;
 		this.name = name;
 		this.puchasePrice = puchasePrice;
 		this.salesPrice = salesPrice;
 		this.countryOfOrigin = countryOfOrigin;
 		this.minStock = minStock;
+		this.currentStock = currentStock;
+		this.supplierPhoneno = supplierPhoneno;
 	}
 
 	public int getId() {
@@ -67,6 +71,34 @@ public class Product {
 
 	public void setMinStock(int minStock) {
 		this.minStock = minStock;
+	}
+
+	/**
+	 * @return the currentStock
+	 */
+	public int getCurrentStock() {
+		return currentStock;
+	}
+
+	/**
+	 * @param currentStock the currentStock to set
+	 */
+	public void setCurrentStock(int currentStock) {
+		this.currentStock = currentStock;
+	}
+
+	/**
+	 * @return the supplierPhoneno
+	 */
+	public String getSupplierPhoneno() {
+		return supplierPhoneno;
+	}
+
+	/**
+	 * @param supplierPhoneno the supplierPhoneno to set
+	 */
+	public void setSupplierPhoneno(String supplierPhoneno) {
+		this.supplierPhoneno = supplierPhoneno;
 	}
 	
 	
