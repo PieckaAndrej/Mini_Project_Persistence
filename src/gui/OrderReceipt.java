@@ -166,8 +166,33 @@ public class OrderReceipt extends JDialog {
 				returnString.append(" " + (anOrderLine.getAmount()));
 			}
 			
+			
 			lblNewLabel.setText(returnString.toString());
 		}
+		if(orderCtrl.getPrice() >= 1500) {
+			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setFont(ColorScheme.FONT);
+			verticalBox.add(lblNewLabel);
+			
+			StringBuilder returnString = new StringBuilder();
+			returnString.append("Delivery price: 45");
+			
+			JLabel lblNewLabel1 = new JLabel("");
+			lblNewLabel.setFont(ColorScheme.FONT);
+			verticalBox.add(lblNewLabel);
+			
+			StringBuilder returnString1 = new StringBuilder();
+			returnString1.append("Discount: -100");
+		}
+		else if(orderCtrl.getPrice() >= 2500) {
+			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setFont(ColorScheme.FONT);
+			verticalBox.add(lblNewLabel);
+			
+			StringBuilder returnString = new StringBuilder();
+			returnString.append("Discount: -100");
+		}
+		
 		
 	}
 	
