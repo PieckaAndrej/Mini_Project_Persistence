@@ -166,14 +166,20 @@ public class MainMenu extends JFrame {
 	 * Handle order creation
 	 */
 	private void createOrder() {
-		try {
-			CreateOrder orderMenu = new CreateOrder();
-			orderMenu.fillGroupList();
-			orderMenu.setVisible(true);
-		} catch (DatabaseAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CreateOrder orderMenu = new CreateOrder();
+		
+		Thread t1 = new Thread(() -> {
+			orderMenu.initGui();
+		});
+		
+		Thread t2 = new Thread(() -> {
+			orderMenu.initOrderCtrl();
+		});
+		
+		t1.start();
+		t2.start();
+		
+		orderMenu.setVisible(true);
 
 	}
 }

@@ -83,23 +83,32 @@ public class CreateOrder extends JDialog {
 	 * Create the dialog.
 	 * @throws DatabaseAccessException 
 	 */
-	public CreateOrder() throws DatabaseAccessException {
+	public CreateOrder() {
 		setTitle("Create Order");
-		orderCtrl = new SaleOrderController();
-		backPath = new ArrayList<>();
 		
-		initGui();
+		backPath = new ArrayList<>();
 
 		//showPanel(selectCustomerMethodPanel);
-		showPanel(phoneNumberPanel);
 		
 		
+	}
+	
+	public void initOrderCtrl() {
+		try {
+			this.orderCtrl = new SaleOrderController();
+
+			fillGroupList();
+			
+		} catch (DatabaseAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * Initialize gui
 	 */
-	private void initGui() {
+	public void initGui() {
 		setModal(true);
 		setBounds(100, 100, 800, 500);
 		
@@ -340,10 +349,9 @@ public class CreateOrder extends JDialog {
 			selectProductsPanel.add(lblTotalPrice, BorderLayout.SOUTH);
 		}
 		
-		contentPanel.setLayout(new BorderLayout(0, 0));
-		
-		
-	}
+	contentPanel.setLayout(new BorderLayout(0, 0));
+	showPanel(phoneNumberPanel);
+}
 		
 	/**
 	 * Opens the panel for searching for customer
