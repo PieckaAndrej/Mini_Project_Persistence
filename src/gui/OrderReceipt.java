@@ -170,7 +170,9 @@ public class OrderReceipt extends JDialog {
 			
 			lblNewLabel.setText(returnString.toString());
 		}
-		if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(1445)) == 1 || orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2400)) == -1) {
+		if((orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(1445)) == 0 
+				|| orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(1445)) == 1) 
+				&& orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2400)) == -1) {
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setFont(ColorScheme.FONT);
 			verticalBox.add(lblNewLabel);
@@ -187,7 +189,8 @@ public class OrderReceipt extends JDialog {
 			lblNewLabel.setText(returnString.toString());
 			lblNewLabel1.setText(returnString1.toString());
 		}
-		else if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2400)) == 1) {
+		else if(orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2400)) == 0
+				&& orderCtrl.getCurrentOrder().getPrice().compareTo(new BigDecimal(2400)) == 1) {
 			JLabel lblNewLabel = new JLabel("");
 			lblNewLabel.setFont(ColorScheme.FONT);
 			verticalBox.add(lblNewLabel);
