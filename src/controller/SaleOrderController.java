@@ -9,6 +9,7 @@ import dal.SaleOrderDB;
 import dal.SaleOrderDBIF;
 import exceptions.DatabaseAccessException;
 import exceptions.NotEnoughInStockException;
+import exceptions.ProductNotFoundException;
 import model.OrderLine;
 import model.Person;
 import model.Product;
@@ -58,8 +59,10 @@ public class SaleOrderController {
 	 * @param quantity the quantity of the product to be added
 	 * @return true if the product was found and added to the order
 	 * @throws NotEnoughInStockException
+	 * @throws ProductNotFoundException 
 	 */
-	public boolean addProduct(int id, int quantity) throws NotEnoughInStockException {
+	public boolean addProduct(int id, int quantity) throws NotEnoughInStockException,
+			ProductNotFoundException {
 		boolean retVal = false;
 		
 		Product product = productController.getProductById(id);

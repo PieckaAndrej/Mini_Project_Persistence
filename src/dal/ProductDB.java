@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import exceptions.ProductNotFoundException;
 import model.Clothing;
 import model.Equipment;
 import model.GunReplica;
@@ -24,9 +25,10 @@ public class ProductDB implements ProductDBIF {
 	 * Finds a product by its id in the database and returns it
 	 * @param id the id of the product to search for
 	 * @return the product with the corresponding id
+	 * @throws ProductNotFoundException 
 	 */
 	@Override
-	public Product getProductByID(int id) {
+	public Product getProductByID(int id) throws ProductNotFoundException {
 		Product product = null;
 		
 		String sqlString = "select distinct *, GunReplica.productId as id1, Clothing.productId as id2,"
@@ -46,6 +48,10 @@ public class ProductDB implements ProductDBIF {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
+		}
+		
+		if (product == null) {
+			throw new ProductNotFoundException(id);
 		}
 		
 		return product;

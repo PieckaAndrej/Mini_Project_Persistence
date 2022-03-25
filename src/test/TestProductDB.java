@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import dal.DbConnection;
 import dal.ProductDB;
+import exceptions.ProductNotFoundException;
 import model.Product;
 
 public class TestProductDB {
@@ -34,7 +35,7 @@ public class TestProductDB {
 		productDb = new ProductDB();
 	}
 	@Test
-	public void ProductIDTest() {
+	public void ProductIDTest() throws ProductNotFoundException {
 		String command1 = "SELECT * FROM Product WHERE id = 1;";
 		Product product = productDb.getProductByID(1);
 		

@@ -17,7 +17,8 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	
 	public SaleOrderDB() throws DatabaseAccessException {
 		try {
-			createStatement = DbConnection.getInstance().getConnection().prepareStatement(CREATE_STATEMENT, Statement.RETURN_GENERATED_KEYS);
+			createStatement = DbConnection.getInstance().getConnection().prepareStatement(CREATE_STATEMENT,
+					Statement.RETURN_GENERATED_KEYS);
 		} catch (SQLException e) {
 			//e.printStackTrace();
 			throw new DatabaseAccessException(DatabaseAccessException.CONNECTION_MESSAGE);

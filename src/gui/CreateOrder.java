@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.SaleOrderController;
 import exceptions.DatabaseAccessException;
 import exceptions.NotEnoughInStockException;
+import exceptions.ProductNotFoundException;
 import model.OrderLine;
 import model.SaleOrderLine;
 
@@ -86,6 +87,7 @@ public class CreateOrder extends JDialog {
 
 		showPanel(selectCustomerMethodPanel);
 		
+		
 	}
 	
 	/**
@@ -119,9 +121,12 @@ public class CreateOrder extends JDialog {
 				{
 					phoneField = new JTextField();
 					phoneField.setFont(ColorScheme.FONT);
-					phoneField.setAlignmentX(0.0f);
+					phoneField.setBorder(new LineBorder(ColorScheme.TEXT_FIELD, 10));
+					phoneField.setBackground(ColorScheme.TEXT_FIELD);
+					phoneField.setForeground(ColorScheme.TEXT_FIELD_FOREGROUND);
 					verticalBox.add(phoneField);
 					phoneField.setColumns(10);
+					phoneField.setAlignmentX(0.0f);
 				}
 			}
 		}
@@ -180,6 +185,9 @@ public class CreateOrder extends JDialog {
 					{
 						textBarcode = new JTextField();
 						textBarcode.setFont(ColorScheme.FONT);
+						textBarcode.setBorder(new LineBorder(ColorScheme.TEXT_FIELD, 10));
+						textBarcode.setBackground(ColorScheme.TEXT_FIELD);
+						textBarcode.setForeground(ColorScheme.TEXT_FIELD_FOREGROUND);
 						textBarcode.setColumns(10);
 						addProductPanel.add(textBarcode);
 					}
@@ -351,7 +359,9 @@ public class CreateOrder extends JDialog {
 			
 		else {
 			lblErrorMessage.setText("We don't talk about Bruno");
-			phoneField.setBorder(new LineBorder(ColorScheme.BUTTON_HIGHTLIGHT));
+			phoneField.setBorder(new LineBorder(ColorScheme.BUTTON_HIGHTLIGHT, 10));
+			phoneField.setBackground(ColorScheme.BUTTON_HIGHTLIGHT);
+			phoneField.setForeground(ColorScheme.BUTTON);
 		}
 	}
 	
@@ -374,17 +384,27 @@ public class CreateOrder extends JDialog {
 			lblErrorMessage.setText(e.getMessage());
 		} catch (NotEnoughInStockException e) {
 			lblErrorMessage.setText(e.getMessage());
+		} catch (ProductNotFoundException e) {
+			lblErrorMessage.setText(e.getMessage());
+			textBarcode.setBackground(ColorScheme.BUTTON_HIGHTLIGHT);
+			textBarcode.setForeground(ColorScheme.BUTTON);
+			textBarcode.setBorder(new LineBorder(ColorScheme.BUTTON_HIGHTLIGHT, 10));
 		}
-		
-			
 	}
 	
 	private void removeErrorMessage() {
 		spinnerQuantity.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-		textBarcode.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-		phoneField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		
+		textBarcode.setBorder(new LineBorder(ColorScheme.TEXT_FIELD, 10));
+		textBarcode.setBackground(ColorScheme.TEXT_FIELD);
+		textBarcode.setForeground(ColorScheme.TEXT_FIELD_FOREGROUND);
+		
+		phoneField.setBorder(new LineBorder(ColorScheme.TEXT_FIELD, 10));
+		phoneField.setBackground(ColorScheme.TEXT_FIELD);
+		phoneField.setForeground(ColorScheme.TEXT_FIELD_FOREGROUND);
 		lblErrorMessage.setText("");
 	}
+	
 	/**
 	 * Updates the list of products added to the order
 	 */
@@ -439,6 +459,7 @@ public class CreateOrder extends JDialog {
 		handleButtons();
 		removeErrorMessage();
 	}
+	
     /**
      * Shows given panel and closes current one
      * @param panel
@@ -449,7 +470,7 @@ public class CreateOrder extends JDialog {
     	}
     	
     	panel.setVisible(true);
-    	contentPanel.add(panel);
+    	contentPanel.add(panel, BorderLayout.CENTER);
     	currentPanel = panel;
     	
     	addToBackPath();

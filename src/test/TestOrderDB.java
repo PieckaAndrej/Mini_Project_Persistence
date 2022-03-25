@@ -16,6 +16,7 @@ import dal.PersonDB;
 import dal.ProductDB;
 import dal.SaleOrderDB;
 import exceptions.DatabaseAccessException;
+import exceptions.ProductNotFoundException;
 import model.SaleOrder;
 import model.SaleOrderLine;
 
@@ -34,7 +35,7 @@ class TestOrderDB {
 	}
 
 	@Test
-	void testCreateOrder() {
+	void testCreateOrder() throws ProductNotFoundException {
 		// arrange
 		String customerPhone = "1234567890";
 		int productId = 2;

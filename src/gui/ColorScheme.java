@@ -7,12 +7,12 @@ public class ColorScheme {
 	/**
 	 * Background color
 	 */
-	public static final Color BACKGROUND = Color.decode("#f3f3f3");
+	public static final Color BACKGROUND = Color.decode("#fefffd");
 	
 	/**
 	 * Color of tabs
 	 */
-	public static final Color TAB = Color.decode("#5085a5");
+	public static final Color TAB = Color.decode("#31708e");
 	
 	/**
 	 * Button color
@@ -29,5 +29,15 @@ public class ColorScheme {
 	 */
 	public static final Color HEADER = Color.decode("#303c6c");
 	
-	public static final Font FONT = new Font("SansSerif", Font.BOLD, 20);
+	/**
+	 * Text field background color
+	 */
+	public static final Color TEXT_FIELD = Color.decode("#cfd8dc");
+	
+	/**
+	 * Text field foreground color
+	 */
+	public static final Color TEXT_FIELD_FOREGROUND = Color.decode("#8d9ca1");
+	
+	public static final Font FONT = new Font("SansSerif", Font.BOLD, 18);
 }
