@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,6 +54,7 @@ public class MainMenu extends JFrame {
 		initGui();
 		showOrders();
 	}
+	
 	/**
 	 * Initialize the MainMenu gui
 	 */
@@ -167,13 +167,12 @@ public class MainMenu extends JFrame {
 	 */
 	private void createOrder() {
 		try {
-			CreateOrder login = new CreateOrder();
-			login.setVisible(true);
+			CreateOrder orderMenu = new CreateOrder();
+			orderMenu.setVisible(true);
 		} catch (DatabaseAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 }

@@ -5,9 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +13,6 @@ import dal.DbConnection;
 import dal.PersonDB;
 import exceptions.DatabaseAccessException;
 import model.Person;
-import model.SaleOrder;
 
 public class TestPersonDB {
 	

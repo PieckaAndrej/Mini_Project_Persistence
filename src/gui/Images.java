@@ -7,10 +7,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -29,10 +27,18 @@ public class Images {
 		
 		button.setHorizontalTextPosition(JButton.CENTER);
 		button.setVerticalTextPosition(JButton.CENTER);
-		button.setPressedIcon(new ImageIcon(Images.getButton((int)(button.getText().length() *
-				ColorScheme.FONT.getSize() * 0.7), ColorScheme.FONT.getSize() * 2, ColorScheme.BUTTON_HIGHTLIGHT)));
-		return new ImageIcon(Images.getButton((int)(button.getText().length() *
-				ColorScheme.FONT.getSize() * 0.7), ColorScheme.FONT.getSize() * 2, ColorScheme.BUTTON));
+		
+		int width = (int)(button.getText().length() *
+				ColorScheme.FONT.getSize() * 0.7);
+		
+		if (width < 100) {
+			width = 100;
+		}
+		
+		int height = ColorScheme.FONT.getSize() * 2;
+		
+		button.setPressedIcon(new ImageIcon(Images.getButton(width, height, ColorScheme.BUTTON_HIGHTLIGHT)));
+		return new ImageIcon(Images.getButton(width, height, ColorScheme.BUTTON));
 	}
 	
 	public static BufferedImage getButton(int w, int h, Color color) {

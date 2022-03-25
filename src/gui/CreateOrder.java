@@ -2,10 +2,6 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -59,14 +55,8 @@ public class CreateOrder extends JDialog {
 	private JSpinner spinnerQuantity;
 	private JTable table;
 	private JLabel lblTotalPrice;
-	private JLabel lblErrorButton;
+	private JLabel lblErrorMessage;
 	private JButton btnBack;
-	private JTextField nameField;
-	private JTextField phoneNumberField;
-	private JTextField addressField;
-	private JTextField cityField;
-	private JTextField zipCodeField;
-	private JPanel newCustomerPanel;
 	private JButton btnCreate;
 	
 	/**
@@ -144,9 +134,9 @@ public class CreateOrder extends JDialog {
 				Box verticalBox = Box.createVerticalBox();
 				selectCustomerMethodPanel.add(verticalBox);
 				{
-					JButton btnNewButton = new JButton("Existing customer ");
-					btnNewButton.setIcon(Images.getButtonIcon(btnNewButton, ColorScheme.BACKGROUND));
-					btnNewButton.addActionListener(new ActionListener() {
+					JButton btnExistingCustomer = new JButton("Existing customer");
+					btnExistingCustomer.setIcon(Images.getButtonIcon(btnExistingCustomer, ColorScheme.BACKGROUND));
+					btnExistingCustomer.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							selectExistingCustomer();
 						}
@@ -161,7 +151,7 @@ public class CreateOrder extends JDialog {
 						Component verticalStrut = Box.createVerticalStrut(20);
 						verticalBox.add(verticalStrut);
 					}
-					verticalBox.add(btnNewButton);
+					verticalBox.add(btnExistingCustomer);
 				}
 			}
 		}
@@ -268,11 +258,11 @@ public class CreateOrder extends JDialog {
 				fl_rightButtonPanel.setAlignment(FlowLayout.LEFT);
 				buttonPanel.add(rightButtonPanel, BorderLayout.EAST);
 				{
-					lblErrorButton = new JLabel("");
-					lblErrorButton.setFont(ColorScheme.FONT);
-					rightButtonPanel.add(lblErrorButton);
-					lblErrorButton.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblErrorButton.setForeground(ColorScheme.BACKGROUND);
+					lblErrorMessage = new JLabel("");
+					lblErrorMessage.setFont(ColorScheme.FONT);
+					rightButtonPanel.add(lblErrorMessage);
+					lblErrorMessage.setHorizontalAlignment(SwingConstants.RIGHT);
+					lblErrorMessage.setForeground(ColorScheme.BACKGROUND);
 				}
 				{
 					btnCreate = new JButton("Create");
@@ -329,145 +319,9 @@ public class CreateOrder extends JDialog {
 		
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		
-		{
-			newCustomerPanel = new JPanel();
-			newCustomerPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-			{
-				Box verticalBox = Box.createVerticalBox();
-				newCustomerPanel.add(verticalBox);
-				{
-					JLabel lblNewCustomer = new JLabel("New Customer");
-					lblNewCustomer.setFont(ColorScheme.FONT);
-					lblNewCustomer.setAlignmentX(0.1f);
-					verticalBox.add(lblNewCustomer);
-				}
-				{
-					Component verticalStrut = Box.createVerticalStrut(20);
-					verticalBox.add(verticalStrut);
-				}
-				{
-					JPanel newCustomerTextPanel = new JPanel();
-					newCustomerTextPanel.setAlignmentX(0.0f);
-					verticalBox.add(newCustomerTextPanel);
-					GridBagLayout gbl_newCustomerTextPanel = new GridBagLayout();
-					gbl_newCustomerTextPanel.columnWidths = new int[]{45, 155, 0};
-					gbl_newCustomerTextPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-					gbl_newCustomerTextPanel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-					gbl_newCustomerTextPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-					newCustomerTextPanel.setLayout(gbl_newCustomerTextPanel);
-					{
-						JLabel lblCustomerName = new JLabel("Name");
-						lblCustomerName.setFont(ColorScheme.FONT);
-						GridBagConstraints gbc_lblCustomerName = new GridBagConstraints();
-						gbc_lblCustomerName.anchor = GridBagConstraints.EAST;
-						gbc_lblCustomerName.insets = new Insets(0, 0, 5, 5);
-						gbc_lblCustomerName.gridx = 0;
-						gbc_lblCustomerName.gridy = 0;
-						newCustomerTextPanel.add(lblCustomerName, gbc_lblCustomerName);
-					}
-					{
-						nameField = new JTextField();
-						nameField.setFont(ColorScheme.FONT);
-						nameField.setColumns(10);
-						nameField.setAlignmentX(1.0f);
-						GridBagConstraints gbc_nameField = new GridBagConstraints();
-						gbc_nameField.insets = new Insets(0, 0, 5, 0);
-						gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
-						gbc_nameField.gridx = 1;
-						gbc_nameField.gridy = 0;
-						newCustomerTextPanel.add(nameField, gbc_nameField);
-					}
-					{
-						JLabel lblCustomerPhoneNumber = new JLabel("Phone number");
-						lblCustomerPhoneNumber.setFont(ColorScheme.FONT);
-						lblCustomerPhoneNumber.setAlignmentX(1.0f);
-						GridBagConstraints gbc_lblCustomerPhoneNumber = new GridBagConstraints();
-						gbc_lblCustomerPhoneNumber.anchor = GridBagConstraints.EAST;
-						gbc_lblCustomerPhoneNumber.insets = new Insets(0, 0, 5, 5);
-						gbc_lblCustomerPhoneNumber.gridx = 0;
-						gbc_lblCustomerPhoneNumber.gridy = 1;
-						newCustomerTextPanel.add(lblCustomerPhoneNumber, gbc_lblCustomerPhoneNumber);
-					}
-					{
-						phoneNumberField = new JTextField();
-						phoneNumberField.setFont(ColorScheme.FONT);
-						phoneNumberField.setColumns(10);
-						GridBagConstraints gbc_phoneNumberField = new GridBagConstraints();
-						gbc_phoneNumberField.insets = new Insets(0, 0, 5, 0);
-						gbc_phoneNumberField.fill = GridBagConstraints.HORIZONTAL;
-						gbc_phoneNumberField.gridx = 1;
-						gbc_phoneNumberField.gridy = 1;
-						newCustomerTextPanel.add(phoneNumberField, gbc_phoneNumberField);
-					}
-					{
-						JLabel lblCustomerAddress = new JLabel("Address");
-						lblCustomerAddress.setFont(ColorScheme.FONT);
-						lblCustomerAddress.setAlignmentX(1.0f);
-						GridBagConstraints gbc_lblCustomerAddress = new GridBagConstraints();
-						gbc_lblCustomerAddress.anchor = GridBagConstraints.EAST;
-						gbc_lblCustomerAddress.insets = new Insets(0, 0, 5, 5);
-						gbc_lblCustomerAddress.gridx = 0;
-						gbc_lblCustomerAddress.gridy = 2;
-						newCustomerTextPanel.add(lblCustomerAddress, gbc_lblCustomerAddress);
-					}
-					{
-						addressField = new JTextField();
-						addressField.setFont(ColorScheme.FONT);
-						addressField.setColumns(10);
-						GridBagConstraints gbc_addressField = new GridBagConstraints();
-						gbc_addressField.insets = new Insets(0, 0, 5, 0);
-						gbc_addressField.fill = GridBagConstraints.HORIZONTAL;
-						gbc_addressField.gridx = 1;
-						gbc_addressField.gridy = 2;
-						newCustomerTextPanel.add(addressField, gbc_addressField);
-					}
-					{
-						JLabel lblCustomerCity = new JLabel("City");
-						lblCustomerCity.setFont(ColorScheme.FONT);
-						lblCustomerCity.setAlignmentX(1.0f);
-						GridBagConstraints gbc_lblCustomerCity = new GridBagConstraints();
-						gbc_lblCustomerCity.anchor = GridBagConstraints.EAST;
-						gbc_lblCustomerCity.insets = new Insets(0, 0, 5, 5);
-						gbc_lblCustomerCity.gridx = 0;
-						gbc_lblCustomerCity.gridy = 3;
-						newCustomerTextPanel.add(lblCustomerCity, gbc_lblCustomerCity);
-					}
-					{
-						cityField = new JTextField();
-						cityField.setFont(ColorScheme.FONT);
-						cityField.setColumns(10);
-						GridBagConstraints gbc_cityField = new GridBagConstraints();
-						gbc_cityField.insets = new Insets(0, 0, 5, 0);
-						gbc_cityField.fill = GridBagConstraints.HORIZONTAL;
-						gbc_cityField.gridx = 1;
-						gbc_cityField.gridy = 3;
-						newCustomerTextPanel.add(cityField, gbc_cityField);
-					}
-					{
-						JLabel lblCustomerZipCode = new JLabel("Zip code");
-						lblCustomerZipCode.setFont(ColorScheme.FONT);
-						lblCustomerZipCode.setAlignmentX(1.0f);
-						GridBagConstraints gbc_lblCustomerZipCode = new GridBagConstraints();
-						gbc_lblCustomerZipCode.anchor = GridBagConstraints.EAST;
-						gbc_lblCustomerZipCode.insets = new Insets(0, 0, 0, 5);
-						gbc_lblCustomerZipCode.gridx = 0;
-						gbc_lblCustomerZipCode.gridy = 4;
-						newCustomerTextPanel.add(lblCustomerZipCode, gbc_lblCustomerZipCode);
-					}
-					{
-						zipCodeField = new JTextField();
-						zipCodeField.setFont(ColorScheme.FONT);
-						zipCodeField.setColumns(10);
-						GridBagConstraints gbc_zipCodeField = new GridBagConstraints();
-						gbc_zipCodeField.fill = GridBagConstraints.HORIZONTAL;
-						gbc_zipCodeField.gridx = 1;
-						gbc_zipCodeField.gridy = 4;
-						newCustomerTextPanel.add(zipCodeField, gbc_zipCodeField);
-					}
-				}
-			}
-		}
-	}	
+		
+	}
+		
 	/**
 	 * Opens the panel for searching for customer
 	 */
@@ -496,7 +350,7 @@ public class CreateOrder extends JDialog {
 		}
 			
 		else {
-			lblErrorButton.setText("We don't talk about Bruno");
+			lblErrorMessage.setText("We don't talk about Bruno");
 			phoneField.setBorder(new LineBorder(ColorScheme.BUTTON_HIGHTLIGHT));
 		}
 	}
@@ -517,9 +371,9 @@ public class CreateOrder extends JDialog {
 			textBarcode.setText("");
 			spinnerQuantity.setValue(1);
 		} catch (NumberFormatException e) {
-			lblErrorButton.setText(e.getMessage());
+			lblErrorMessage.setText(e.getMessage());
 		} catch (NotEnoughInStockException e) {
-			lblErrorButton.setText(e.getMessage());
+			lblErrorMessage.setText(e.getMessage());
 		}
 		
 			
@@ -529,7 +383,7 @@ public class CreateOrder extends JDialog {
 		spinnerQuantity.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		textBarcode.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		phoneField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-		lblErrorButton.setText("");
+		lblErrorMessage.setText("");
 	}
 	/**
 	 * Updates the list of products added to the order
@@ -565,7 +419,7 @@ public class CreateOrder extends JDialog {
 			}
 		} 
 		else {
-			lblErrorButton.setText("na na na na");
+			lblErrorMessage.setText("na na na na");
 		}
 	}
 	
@@ -626,22 +480,13 @@ public class CreateOrder extends JDialog {
     	
     	if (currentPanel.equals(selectProductsPanel)) {
     		btnFinishOrder.setVisible(!btnFinishOrder.isVisible());
-    	}
-    	else {
-    		if (currentPanel.equals(phoneNumberPanel)) {
+    	} else if (currentPanel.equals(phoneNumberPanel)) {
     			btnConfirm.setVisible(!btnConfirm.isVisible());
-    		}
-    		else {
-    			if (currentPanel.equals(newCustomerPanel)) {
-    				btnCreate.setVisible(!btnCreate.isVisible());
-    			}
-    		}
     	}
     	
     	if (backPath.size() <= 1) {
     		btnBack.setVisible(false);
-    	} 
-    	else {
+    	} else {
     		btnBack.setVisible(true);
     	}
     }
