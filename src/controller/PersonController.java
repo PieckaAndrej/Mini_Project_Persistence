@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import dal.PersonDB;
 import dal.PersonDBIF;
 import exceptions.DatabaseAccessException;
@@ -23,5 +25,9 @@ public class PersonController {
 	 */
 	public Person getPersonByPhone(String phone) {
 		return personDb.findByPhone(phone);
+	}
+	
+	public List<Person> showPersons() {
+		return personDb.getAllPerson();
 	}
 }

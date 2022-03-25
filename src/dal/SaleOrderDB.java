@@ -4,8 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.List;
 
 import exceptions.DatabaseAccessException;
+import model.Person;
 import model.SaleOrder;
 
 public class SaleOrderDB implements SaleOrderDBIF {

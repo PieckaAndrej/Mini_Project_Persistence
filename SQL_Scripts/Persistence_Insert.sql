@@ -8,6 +8,8 @@ go
 
 insert into Person values('Joe','Norgesgade 18 2tv','Denmark','9000','1234567890', 'joe@gmail.com');
 
+insert into Person values('James','Hadsundvej 100','Denmark','9000','5555555555', 'james@gmail.com');
+
 insert into Person values('Hans', 'Jungfernstieg 23', 'Germany', '20095', '89216457', 'hans@gmail.com');
 
 go
@@ -23,6 +25,8 @@ insert into Product values('hat',10,15.00015,'USA',2,8,'1234567890');
 insert into Product values('AK-47',10,1500,'Vietnam',2,20,'1234567890');
 
 insert into Product values('Cowboy T-Shirt',10,5,'Denmark',4,100,'1234567890');
+
+insert into Product values('Pistol Belt',14,50,'Netherlands',0,40,'89216457');
 
 go
 
@@ -48,7 +52,7 @@ insert into Clothing values('XL', 'blue', 3);
 
 go
 
-insert into Equipment values ('pistol belts', 'comfy for use and comes with a great design', 2);
+insert into Equipment values ('Leather Gun Belt', 'Comfy for use and comes with a great design', 4);
 
 go
 

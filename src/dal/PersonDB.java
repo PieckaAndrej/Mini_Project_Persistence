@@ -3,6 +3,8 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import exceptions.DatabaseAccessException;
 import model.Person;
@@ -13,6 +15,8 @@ public class PersonDB implements PersonDBIF {
 	private PreparedStatement selectPersonStatement;
 	private static final String SELECT_CITY_STATEMENT = "SELECT City FROM Country WHERE country = ? and zipcode = ?";
 	private PreparedStatement selectCityStatement;
+	private static final String SELECT_ALL_PERSON_STATEMENT = "SELECT * FROM Person";
+	private PreparedStatement selectAllPersonStatement;
 	
 	/**
 	 * Constructor for PersonDB class
@@ -22,6 +26,7 @@ public class PersonDB implements PersonDBIF {
 		try {
 			selectPersonStatement = DbConnection.getInstance().getConnection().prepareStatement(SELECT_PERSON_STATEMENT);
 			selectCityStatement = DbConnection.getInstance().getConnection().prepareStatement(SELECT_CITY_STATEMENT);
+			selectAllPersonStatement = DbConnection.getInstance().getConnection().prepareStatement(SELECT_ALL_PERSON_STATEMENT);
 		} catch (SQLException e) {
 			throw new DatabaseAccessException(DatabaseAccessException.CONNECTION_MESSAGE);
 		}
@@ -54,6 +59,20 @@ public class PersonDB implements PersonDBIF {
 		return person;
 	}
 	
+	@Override
+	public List<Person> getAllPerson() {
+		List<Person> ps = new ArrayList<>();
+		
+		try {
+			ResultSet rs = selectAllPersonStatement.executeQuery();
+			ps = buildObjects(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ps;
+	}
+	
 	/**
 	 * Creates a Person object from a result set
 	 * @param rs the result set containing the data from the person table
@@ -66,5 +85,21 @@ public class PersonDB implements PersonDBIF {
 				rsCity.getString("city"), rs.getString("phoneno"),
 				rs.getString("zipcode"), rs.getString("country"), rs.getString("email"));
 	}
+	
+	private List<Person> buildObjects(ResultSet rs) throws SQLException {
+		List<Person> ps = new ArrayList<>();
+		
+		while(rs.next()) {
+			selectCityStatement.setString(1, rs.getString("country"));
+			selectCityStatement.setString(2, rs.getString("zipcode"));
+			ResultSet rsCity = selectCityStatement.executeQuery();
+			if(rsCity.next()) {
+				ps.add(buildObject(rs, rsCity));
+			}
+		}
+		
+		return ps;
+	}
+
 
 }

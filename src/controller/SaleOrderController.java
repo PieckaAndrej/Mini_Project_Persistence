@@ -2,6 +2,7 @@ package controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import dal.OrderLineDB;
 import dal.OrderLineDBIF;
@@ -144,5 +145,9 @@ public class SaleOrderController {
 	 */
 	public void cancelOrder() {
 		currentOrder = null;
+	}
+	
+	public List<Person> showPerson() {
+		return personController.showPersons();
 	}
 }

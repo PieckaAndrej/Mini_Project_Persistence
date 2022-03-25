@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -30,6 +33,7 @@ import exceptions.DatabaseAccessException;
 import exceptions.NotEnoughInStockException;
 import exceptions.ProductNotFoundException;
 import model.OrderLine;
+import model.Person;
 import model.SaleOrderLine;
 
 public class CreateOrder extends JDialog {
@@ -59,6 +63,7 @@ public class CreateOrder extends JDialog {
 	private JLabel lblErrorMessage;
 	private JButton btnBack;
 	private JButton btnCreate;
+	private JComboBox<Person> comboBox;
 	
 	/**
 	 * Launch the application.
@@ -85,7 +90,8 @@ public class CreateOrder extends JDialog {
 		
 		initGui();
 
-		showPanel(selectCustomerMethodPanel);
+		//showPanel(selectCustomerMethodPanel);
+		showPanel(phoneNumberPanel);
 		
 		
 	}
@@ -127,6 +133,15 @@ public class CreateOrder extends JDialog {
 					verticalBox.add(phoneField);
 					phoneField.setColumns(10);
 					phoneField.setAlignmentX(0.0f);
+				}
+				{
+					Component verticalStrut = Box.createVerticalStrut(20);
+					verticalBox.add(verticalStrut);
+				}
+				{
+					comboBox = new JComboBox<Person>();
+					comboBox.setEditable(true);
+					verticalBox.add(comboBox);
 				}
 			}
 		}
@@ -533,5 +548,20 @@ public class CreateOrder extends JDialog {
 	 */
 	public boolean isCreated() {
 		return created;
+	}
+	
+	public void fillGroupList() {
+		this.comboBox.setRenderer(new GroupListCellRenderer());
+		try {
+			List<Person> ps = orderCtrl.showPerson();
+			DefaultComboBoxModel<Person> dlm = new DefaultComboBoxModel<>();
+			for(int i = 0; i < ps.size(); i++) {
+				dlm.addElement(ps.get(i));
+			}
+			this.comboBox.setModel(dlm);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Oh noes! Something went wrong " + e.getMessage());
+		}
+		
 	}
 }
